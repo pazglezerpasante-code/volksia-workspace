@@ -1,0 +1,22 @@
+VOLKSIA WORKSPACE — INSTRUCCIONES
+
+1. Extraé TODO el ZIP en una carpeta de tu computadora.
+2. Entrá a la carpeta VOLKSIA_WORKSPACE.
+3. Abrí index.html con Chrome o Edge.
+4. Usá el menú de la izquierda para abrir las herramientas.
+5. Para configurar Mi IA: Configuración > pegá la URL > Guardar dirección.
+
+Contenido:
+- index.html: panel principal
+- herramientas/control-asistencia.html
+- herramientas/turnero.html
+- herramientas/gestor-encuestas.html
+
+Gestor de Certificados:
+https://gestor-certificados-06pf.onrender.com/
+
+Notas:
+- No muevas los archivos de la carpeta herramientas: el panel usa rutas relativas.
+- La URL de Mi IA se guarda en el navegador actual (localStorage).
+- Algunos sitios externos pueden bloquear que se muestren dentro de un iframe. Si sucede, usá el botón "Abrir en pestaña nueva".
+- Este paquete conserva los proyectos HTML originales recibidos. La integración visual no cambia el backend ni convierte los datos locales en una base de datos compartida.
