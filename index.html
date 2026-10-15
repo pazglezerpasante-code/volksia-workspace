@@ -173,6 +173,7 @@ html[data-theme="dark"] .themebtn .moon{display:none}
 .empty .eico svg.i{width:30px;height:30px}
 .empty h3{margin:0 0 8px;font:650 24px/1.15 var(--display);color:var(--ink)}
 .empty p{margin:0 auto;max-width:46ch;color:var(--ink-2)}
+.empty .btn span{display:inline}
 .empty code{font:600 13px var(--text);background:var(--surface-2);border:1px solid var(--line);padding:2px 7px;border-radius:6px;color:var(--ink)}
 
 /* modo pantalla completa del panel */
@@ -370,13 +371,17 @@ dialog.pal::backdrop{background:rgba(3,10,22,.55);backdrop-filter:blur(4px)}
    ============================================================ */
 const AI_URL = "";
 
+/* Si tu IA no se muestra dentro del panel (muchos sitios lo bloquean),
+   poné false y se abrirá en una pestaña nueva con un botón. */
+const AI_EMBED = true;
+
 /* ---------- Herramientas ---------- */
 const TOOLS = [
   {id:'turnero', name:'Generador de Turnero', short:'Turnero', desc:'Generá los turnos del taller y exportalos a Excel desde el panel principal.', src:'herramientas/turnero.html', kind:'local', color:'#2F6BFF', icon:'i-grid', size:'c-lg', keys:'turnos taller excel'},
   {id:'asistencia', name:'Control de Asistencia', short:'Asistencia', desc:'Proyecto de control de asistencia de Organización Sur.', src:'herramientas/control-asistencia.html', kind:'local', color:'#0E9F8E', icon:'i-clock', size:'c-md', keys:'presentismo horarios ingreso egreso'},
   {id:'encuestas', name:'Gestor de Encuestas', short:'Encuestas', desc:'Prepará y trabajá tus encuestas internas a partir de planillas de Excel.', src:'herramientas/gestor-encuestas.html', kind:'local', color:'#E08A00', icon:'i-chart', size:'c-md', keys:'encuesta interna pasos taller'},
-  {id:'certificados', name:'Gestor de Certificados', short:'Certificados', desc:'Sistema web para gestionar los certificados de los trabajadores.', src:'https://gestor-certificados-06pf.onrender.com/', kind:'web', color:'#7B4DE8', icon:'i-badge', size:'c-wide', keys:'certificado sucursal trabajadores', slow:'Este sistema está alojado en internet y puede tardar hasta un minuto en despertar la primera vez.'},
-  {id:'ia', name:'Mi IA', short:'Mi IA', desc:'Tu asistente de inteligencia artificial, siempre a mano dentro del espacio de trabajo.', src:AI_URL, kind:'web', color:'#00A8F0', icon:'i-spark', size:'c-wide dark', keys:'inteligencia artificial asistente chat', slow:'Algunos sitios tardan en abrir. Si no aparece nada, usá Abrir aparte.'}
+  {id:'certificados', name:'Gestor de Certificados', short:'Certificados', desc:'Sistema web para gestionar los certificados de los trabajadores.', src:'https://gestor-certificados-06pf.onrender.com/', kind:'web', embed:false, launch:'El Gestor de Certificados tiene su propio sitio seguro y no permite mostrarse dentro de otro panel. Se abre en una pestaña nueva, y cuando termines volvés acá.', color:'#7B4DE8', icon:'i-badge', size:'c-wide', keys:'certificado sucursal trabajadores', slow:'Este sistema está alojado en internet y puede tardar hasta un minuto en despertar la primera vez.'},
+  {id:'ia', name:'Mi IA', short:'Mi IA', desc:'Tu asistente de inteligencia artificial, siempre a mano dentro del espacio de trabajo.', src:AI_URL, kind:'web', embed:AI_EMBED, launch:'Tu IA se abre en su propia pestaña porque el sitio no permite mostrarse dentro de otro panel.', color:'#00A8F0', icon:'i-spark', size:'c-wide dark', keys:'inteligencia artificial asistente chat', slow:'Algunos sitios tardan en abrir. Si no aparece nada, usá Abrir aparte.'}
 ];
 
 const ART = {
@@ -490,6 +495,11 @@ function ensurePane(t){
   if(panes[t.id]) return panes[t.id];
   const pane=document.createElement('div');
   pane.className='pane'; pane.dataset.id=t.id; pane.style.setProperty('--t',t.color);
+  if(t.src && t.embed===false){
+    pane.innerHTML=`<div class="empty"><div><div class="eico">${ico(t.icon)}</div><h3>${t.name}</h3><p>${t.launch}</p><p style="margin-top:22px"><button class="btn primary" type="button" data-open style="margin:0 auto">${ico('i-ext')}<span>Abrir ${t.short}</span></button></p></div></div>`;
+    pane.querySelector('[data-open]').addEventListener('click',()=>openExternal(t));
+    $('#frame').appendChild(pane); panes[t.id]=pane; return pane;
+  }
   if(!t.src){
     pane.innerHTML=`<div class="empty"><div><div class="eico">${ico(t.icon)}</div><h3>Falta la dirección de ${t.short}</h3><p>Abrí el archivo <code>index.html</code>, buscá la línea <code>const AI_URL</code> y pegá ahí la URL de tu IA.</p></div></div>`;
   }else{
