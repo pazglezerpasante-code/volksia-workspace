@@ -5,8 +5,14 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#EEF1F5">
 <meta name="description" content="VOLKSIA Workspace: todas las herramientas de trabajo en un solo lugar.">
+<meta name="robots" content="noindex,nofollow">
+<meta name="color-scheme" content="light dark">
+<meta property="og:type" content="website">
+<meta property="og:title" content="VOLKSIA Workspace">
+<meta property="og:description" content="Turnero, asistencia, encuestas y certificados en un solo panel de trabajo.">
+<meta name="twitter:card" content="summary">
 <title>VOLKSIA Workspace</title>
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23001E50'/%3E%3Cpath d='M17 20l15 26 15-26' fill='none' stroke='white' stroke-width='6' stroke-linecap='round' stroke-linejoin='round'/%3E%3Ccircle cx='32' cy='17' r='4' fill='%2300A8F0'/%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect x='8' y='14' width='48' height='40' rx='15' fill='%23001E50'/%3E%3Cpath d='M32 14V9' stroke='%2300A8F0' stroke-width='3' stroke-linecap='round'/%3E%3Ccircle cx='32' cy='7' r='4.2' fill='%2300A8F0'/%3E%3Ccircle cx='23.500' cy='32' r='8.500' fill='%23fff'/%3E%3Ccircle cx='40.500' cy='32' r='8.500' fill='%23fff'/%3E%3Ccircle cx='24.500' cy='33' r='4.200' fill='%230A1A2F'/%3E%3Ccircle cx='41.500' cy='33' r='4.200' fill='%230A1A2F'/%3E%3Cpath d='M26 46q6 5 12 0' fill='none' stroke='%2300A8F0' stroke-width='2.600' stroke-linecap='round'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Instrument+Sans:wght@400..700&display=swap" rel="stylesheet">
@@ -33,6 +39,10 @@ button{cursor:pointer}
 a{color:inherit;text-decoration:none}
 svg.i{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex:none}
 :focus-visible{outline:2px solid var(--ring);outline-offset:2px;border-radius:8px}
+.skip{position:fixed;left:12px;top:-60px;z-index:200;padding:10px 16px;border-radius:12px;background:var(--ink);color:var(--bg);font-weight:600;transition:top .15s}
+.skip:focus{top:12px}
+.canvas:focus{outline:none}
+.stagetitle h2:focus{outline:none}
 kbd{font:600 11px/1 var(--text);padding:4px 6px;border:1px solid var(--line-2);border-bottom-width:2px;border-radius:6px;color:var(--ink-2);background:var(--surface-2)}
 
 /* ---------- Estructura ---------- */
@@ -43,7 +53,21 @@ kbd{font:600 11px/1 var(--text);padding:4px 6px;border:1px solid var(--line-2);b
 /* ---------- Barra lateral ---------- */
 .rail{display:flex;flex-direction:column;background:var(--surface);border-right:1px solid var(--line);padding:18px 14px 14px;min-height:0;z-index:30;overflow:hidden}
 .brand{display:flex;align-items:center;gap:12px;padding:2px 6px 22px;min-height:60px}
-.brand svg{width:40px;height:40px;flex:none}
+.brand .mascot-slot{width:44px;height:48px;flex:none}
+.mascot-slot.big{width:84px;height:92px;margin:0 auto 14px}
+.mascot{display:block;width:100%;height:100%;overflow:visible}
+.m-eye{transform-box:fill-box;transform-origin:center;animation:blink 5.5s infinite}
+.m-eye+.m-eye{animation-delay:.04s}
+@keyframes blink{0%,92%,100%{transform:scaleY(1)}95%{transform:scaleY(.08)}}
+.m-hop{transform-box:fill-box;transform-origin:50% 100%}
+.mascot.hop .m-hop{animation:hop .55s cubic-bezier(.3,1.6,.5,1)}
+@keyframes hop{0%{transform:none}30%{transform:translateY(-7px) scale(.95,1.07)}62%{transform:translateY(0) scale(1.07,.93)}100%{transform:none}}
+.m-ant{transform-box:fill-box;transform-origin:50% 100%}
+.mascot.hop .m-ant{animation:wob .55s ease-out}
+@keyframes wob{0%,100%{transform:none}35%{transform:rotate(14deg)}70%{transform:rotate(-9deg)}}
+.hk{margin-left:8px}
+.meta{display:flex;align-items:center;gap:0}
+@media(hover:none){.hk{display:none}}
 .brand b{display:block;font:700 19px/1 var(--display);letter-spacing:.02em}
 .brand small{display:block;color:var(--ink-3);font-size:12px;margin-top:4px}
 .railnav{display:grid;gap:4px;align-content:start;flex:1;overflow:auto;padding:2px}
@@ -92,7 +116,7 @@ html[data-theme="dark"] .themebtn .moon{display:none}
 .hero>*{position:relative}
 .hello h1{margin:0;font:700 clamp(40px,6.2vw,76px)/.98 var(--display);letter-spacing:-.035em;max-width:11ch}
 .hello p{margin:16px 0 0;font-size:17px;color:var(--ink-2);max-width:44ch}
-.clock{text-align:right}
+.clock{text-align:right;margin-left:auto}
 .clock .time{font:600 clamp(46px,7vw,96px)/.9 var(--display);letter-spacing:-.04em;font-variant-numeric:tabular-nums;display:flex;align-items:baseline;justify-content:flex-end;gap:6px}
 .clock .sec{font-size:.36em;color:var(--ink-3);letter-spacing:-.01em;width:1.6em;text-align:left}
 .clock .date{margin-top:10px;color:var(--ink-2);font-size:16px;font-weight:550}
@@ -111,6 +135,8 @@ html[data-theme="dark"] .themebtn .moon{display:none}
 .card.c-lg{grid-column:span 7;grid-row:span 2;border-radius:30px;padding:28px}
 .card.c-md{grid-column:span 5}
 .card.c-wide{grid-column:span 6}
+.card.c-full{grid-column:span 12;min-height:0}
+.c-full .art svg{max-width:200px}
 .art{flex:1;display:grid;place-items:center;min-height:110px;padding:6px 0 14px}
 .art svg{width:100%;max-width:290px;height:auto;color:var(--t)}
 .c-lg .art svg{max-width:440px}
@@ -203,15 +229,31 @@ dialog.pal::backdrop{background:rgba(3,10,22,.55);backdrop-filter:blur(4px)}
 .toast.show{opacity:1;transform:translate(-50%,0)}
 
 /* entrada (solo al cargar) */
-.intro .hello,.intro .clock,.intro .card,.intro .recents{animation:rise .7s cubic-bezier(.2,.7,.2,1) both;animation-delay:calc(var(--i,0)*70ms)}
+.intro .hello,.intro .heat,.intro .clock,.intro .card,.intro .recents{animation:rise .7s cubic-bezier(.2,.7,.2,1) both;animation-delay:calc(var(--i,0)*70ms)}
 @keyframes rise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
 
 .scrim{display:none}
+
+/* ══ Heat word ═════════════════════════════════════════════ */
+.heat {
+  position: relative;
+  cursor: pointer;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+  -webkit-user-select: none;
+  /* en el panel el lienzo se adapta al ancho disponible */
+  width: min(380px, 100%);
+  aspect-ratio: 380 / 150;
+  flex: none;}
+
+.heat-canvas { display: block; width: 100%; height: 100%; }
 
 /* ---------- Adaptación ---------- */
 @media(max-width:1100px){
   .card.c-lg{grid-column:span 12;grid-row:span 1}
   .card.c-md,.card.c-wide{grid-column:span 6}
+  .card.c-full{grid-column:span 12}
   .hello h1{max-width:none}
 }
 @media(max-width:860px){
@@ -237,9 +279,10 @@ dialog.pal::backdrop{background:rgba(3,10,22,.55);backdrop-filter:blur(4px)}
   .btn{padding:0 12px}
   .btn.back span{display:inline}
   .stagetitle p{display:none}
+  .heat{display:none}
 }
 @media(max-width:700px){
-  .card,.card.c-md,.card.c-wide,.card.c-lg{grid-column:span 12;min-height:0}
+  .card,.card.c-md,.card.c-wide,.card.c-lg,.card.c-full{grid-column:span 12;min-height:0}
   .card.c-lg{padding:22px}
   .c-lg .cbody h3{font-size:26px}
 }
@@ -269,23 +312,32 @@ dialog.pal::backdrop{background:rgba(3,10,22,.55);backdrop-filter:blur(4px)}
     <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
     <symbol id="i-side" viewBox="0 0 24 24"><rect x="3.5" y="4.5" width="17" height="15" rx="3.5"/><path d="M9.5 4.5v15"/></symbol>
     <symbol id="i-enter" viewBox="0 0 24 24"><path d="M20 5v7a2 2 0 01-2 2H5M9 10l-4 4 4 4"/></symbol>
-    <symbol id="i-logo" viewBox="0 0 64 64"><rect width="64" height="64" rx="17" fill="#001E50"/><path d="M17 21l15 26 15-26" fill="none" stroke="#fff" stroke-width="6.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="32" cy="16.5" r="4.2" fill="#00A8F0"/></symbol>
   </defs>
 </svg>
 
-<noscript><p style="padding:24px;color:#fff;background:#001E50">Este panel necesita JavaScript para funcionar. Activalo en tu navegador y volvé a cargar la página.</p></noscript>
+<a class="skip" href="#main">Saltar al contenido</a>
+
+<noscript><div style="padding:24px;color:#fff;background:#001E50;font-family:system-ui,sans-serif;line-height:1.6">
+  <p style="margin:0 0 12px"><strong>Este panel necesita JavaScript para funcionar.</strong> Activalo en tu navegador y volvé a cargar la página. Mientras tanto, podés abrir las herramientas directamente:</p>
+  <ul style="margin:0;padding-left:20px">
+    <li><a style="color:#8FD3FF" href="herramientas/turnero.html">Generador de Turnero</a></li>
+    <li><a style="color:#8FD3FF" href="herramientas/control-asistencia.html">Control de Asistencia</a></li>
+    <li><a style="color:#8FD3FF" href="herramientas/gestor-encuestas.html">Gestor de Encuestas</a></li>
+    <li><a style="color:#8FD3FF" href="https://gestor-certificados-06pf.onrender.com/" rel="noopener noreferrer">Gestor de Certificados</a></li>
+  </ul>
+</div></noscript>
 
 <div class="app intro" id="app">
   <div class="scrim" id="scrim"></div>
 
   <aside class="rail" id="rail" aria-label="Navegación principal">
     <a class="brand" href="#inicio" aria-label="VOLKSIA, ir al inicio">
-      <svg><use href="#i-logo"/></svg>
+      <span class="mascot-slot" data-mascot></span>
       <div><b>VOLKSIA</b><small>Workspace</small></div>
     </a>
     <nav class="railnav" id="railnav"></nav>
     <div class="railfoot">
-      <div class="status" id="status"><i class="dot"></i><span>Conectado</span></div>
+      <div class="status" id="status"><i class="dot"></i><span>En línea</span></div>
       <button class="collapse" id="collapse" type="button" aria-label="Contraer o expandir menú"><svg class="i"><use href="#i-side"/></svg><span>Contraer menú</span></button>
     </div>
   </aside>
@@ -303,7 +355,7 @@ dialog.pal::backdrop{background:rgba(3,10,22,.55);backdrop-filter:blur(4px)}
       </button>
     </header>
 
-    <main class="canvas">
+    <main class="canvas" id="main" tabindex="-1">
       <!-- Inicio -->
       <section class="home" id="home">
         <div class="homein">
@@ -312,6 +364,7 @@ dialog.pal::backdrop{background:rgba(3,10,22,.55);backdrop-filter:blur(4px)}
               <h1 id="greet">Buen día.</h1>
               <p>Elegí una herramienta para empezar a trabajar.</p>
             </div>
+            <div class="heat" id="heat" style="--i:1" role="button" tabindex="0" aria-label="VOLKSIA. Tocá para cambiar de forma"><canvas class="heat-canvas" id="heatCv" aria-hidden="true"></canvas></div>
             <div class="clock" style="--i:1" aria-live="off">
               <div class="time"><span id="clockHM">--:--</span><span class="sec" id="clockS">--</span></div>
               <div class="date" id="clockDate"></div>
@@ -338,7 +391,7 @@ dialog.pal::backdrop{background:rgba(3,10,22,.55);backdrop-filter:blur(4px)}
           <a class="btn back" href="#inicio" id="backBtn"><svg class="i"><use href="#i-back"/></svg><span>Volver</span></a>
           <div class="stagetitle">
             <div class="ti" id="stIcon"><svg class="i"><use href="#i-grid"/></svg></div>
-            <div><h2 id="stName"></h2><p id="stMeta"></p></div>
+            <div><h2 id="stName" tabindex="-1"></h2><p id="stMeta"></p></div>
           </div>
           <div class="spacer"></div>
           <button class="btn" id="btnReload" type="button" title="Recargar herramienta"><svg class="i"><use href="#i-reload"/></svg><span>Recargar</span></button>
@@ -354,10 +407,10 @@ dialog.pal::backdrop{background:rgba(3,10,22,.55);backdrop-filter:blur(4px)}
 <dialog class="pal" id="palette" aria-label="Buscador">
   <div class="palhead">
     <svg class="i"><use href="#i-search"/></svg>
-    <input id="palInput" type="text" placeholder="Buscar herramientas o acciones" autocomplete="off" spellcheck="false" aria-label="Buscar">
+    <input id="palInput" type="text" role="combobox" aria-expanded="true" aria-controls="palList" aria-autocomplete="list" aria-activedescendant="" placeholder="Buscar herramientas o acciones" autocomplete="off" spellcheck="false" aria-label="Buscar">
     <kbd>Esc</kbd>
   </div>
-  <ul class="pallist" id="palList" role="listbox"></ul>
+  <ul class="pallist" id="palList" role="listbox" aria-label="Resultados"></ul>
   <div class="palfoot"><span><kbd>↑</kbd><kbd>↓</kbd> moverse</span><span><kbd>Enter</kbd> abrir</span></div>
 </dialog>
 
@@ -376,13 +429,16 @@ const AI_URL = "";
 const AI_EMBED = true;
 
 /* ---------- Herramientas ---------- */
-const TOOLS = [
+const ALL_TOOLS = [
   {id:'turnero', name:'Generador de Turnero', short:'Turnero', desc:'Generá los turnos del taller y exportalos a Excel desde el panel principal.', src:'herramientas/turnero.html', kind:'local', color:'#2F6BFF', icon:'i-grid', size:'c-lg', keys:'turnos taller excel'},
   {id:'asistencia', name:'Control de Asistencia', short:'Asistencia', desc:'Proyecto de control de asistencia de Organización Sur.', src:'herramientas/control-asistencia.html', kind:'local', color:'#0E9F8E', icon:'i-clock', size:'c-md', keys:'presentismo horarios ingreso egreso'},
   {id:'encuestas', name:'Gestor de Encuestas', short:'Encuestas', desc:'Prepará y trabajá tus encuestas internas a partir de planillas de Excel.', src:'herramientas/gestor-encuestas.html', kind:'local', color:'#E08A00', icon:'i-chart', size:'c-md', keys:'encuesta interna pasos taller'},
   {id:'certificados', name:'Gestor de Certificados', short:'Certificados', desc:'Sistema web para gestionar los certificados de los trabajadores.', src:'https://gestor-certificados-06pf.onrender.com/', kind:'web', embed:false, launch:'El Gestor de Certificados tiene su propio sitio seguro y no permite mostrarse dentro de otro panel. Se abre en una pestaña nueva, y cuando termines volvés acá.', color:'#7B4DE8', icon:'i-badge', size:'c-wide', keys:'certificado sucursal trabajadores', slow:'Este sistema está alojado en internet y puede tardar hasta un minuto en despertar la primera vez.'},
-  {id:'ia', name:'Mi IA', short:'Mi IA', desc:'Tu asistente de inteligencia artificial, siempre a mano dentro del espacio de trabajo.', src:AI_URL, kind:'web', embed:AI_EMBED, launch:'Tu IA se abre en su propia pestaña porque el sitio no permite mostrarse dentro de otro panel.', color:'#00A8F0', icon:'i-spark', size:'c-wide dark', keys:'inteligencia artificial asistente chat', slow:'Algunos sitios tardan en abrir. Si no aparece nada, usá Abrir aparte.'}
+  {id:'ia', name:'Mi IA', short:'Mi IA', desc:'Tu asistente de inteligencia artificial, siempre a mano dentro del espacio de trabajo.', src:AI_URL, kind:'web', embed:AI_EMBED, launch:'Tu IA se abre en su propia pestaña porque el sitio no permite mostrarse dentro de otro panel.', color:'#00A8F0', icon:'i-spark', size:'c-full dark', keys:'inteligencia artificial asistente chat', slow:'Algunos sitios tardan en abrir. Si no aparece nada, usá Abrir aparte.'}
 ];
+/* Mi IA no aparece hasta que pegues su URL en AI_URL: así nadie ve una
+   herramienta vacía ni instrucciones de configuración. */
+const TOOLS = ALL_TOOLS.filter(t => t.src);
 
 const ART = {
   turnero:`<svg viewBox="0 0 240 150" aria-hidden="true"><rect class="a-frame" x="6" y="6" width="228" height="138" rx="16"/><path class="a-line" d="M6 38H234M62 38V144M118 38V144M174 38V144"/><circle class="a-solid" cx="24" cy="22" r="4.5"/><rect class="a-fill" x="36" y="19" width="52" height="6" rx="3"/><rect class="a-solid" x="14" y="46" width="40" height="32" rx="8"/><rect class="a-fill" x="70" y="62" width="40" height="46" rx="8"/><rect class="a-fill" x="126" y="46" width="40" height="26" rx="8"/><rect class="a-solid" x="182" y="80" width="44" height="42" rx="8"/><rect class="a-fill" x="14" y="92" width="40" height="40" rx="8"/><rect class="a-fill" x="126" y="82" width="40" height="46" rx="8"/><rect class="a-fill" x="182" y="46" width="44" height="26" rx="8"/></svg>`,
@@ -438,7 +494,8 @@ if(store.get('volksia_mini',false)) app.classList.add('mini');
 function updateOnline(){
   const on=navigator.onLine,s=$('#status');
   s.classList.toggle('off',!on);
-  s.querySelector('span:last-child').textContent = on?'Conectado':'Sin conexión';
+  s.querySelector('span:last-child').textContent = on?'En línea':'Sin conexión';
+  s.setAttribute('role','status');
 }
 addEventListener('online',updateOnline);addEventListener('offline',updateOnline);updateOnline();
 
@@ -454,7 +511,8 @@ function tick(){
   const g = hr<6?'Buenas noches.':hr<13?'Buen día.':hr<20?'Buenas tardes.':'Buenas noches.';
   const el=$('#greet'); if(el.textContent!==g) el.textContent=g;
 }
-tick(); setInterval(tick,1000);
+tick(); setInterval(()=>{ if(!document.hidden) tick(); },1000);
+document.addEventListener('visibilitychange',()=>{ if(!document.hidden) tick(); });
 
 /* ---------- Tarjetas de inicio ---------- */
 function buildCards(){
@@ -462,7 +520,7 @@ function buildCards(){
     <a class="card ${t.size}" href="#${t.id}" style="--t:${t.color};--i:${i+2}" data-id="${t.id}">
       <div class="art">${ART[t.id]}</div>
       <div class="cbody"><h3>${t.name}</h3><p>${t.desc}</p></div>
-      <div class="cfoot"><span class="chip">${t.kind==='web'?'Sistema web':'Herramienta interna'}</span><span class="open">Abrir ${ico('i-arrow')}</span></div>
+      <div class="cfoot"><span class="meta"><span class="chip">${t.kind==='web'?'Sistema web':'Herramienta interna'}</span><kbd class="hk" aria-hidden="true">${i+1}</kbd></span><span class="open">Abrir ${ico('i-arrow')}</span></div>
     </a>`).join('');
 }
 
@@ -503,14 +561,25 @@ function ensurePane(t){
   if(!t.src){
     pane.innerHTML=`<div class="empty"><div><div class="eico">${ico(t.icon)}</div><h3>Falta la dirección de ${t.short}</h3><p>Abrí el archivo <code>index.html</code>, buscá la línea <code>const AI_URL</code> y pegá ahí la URL de tu IA.</p></div></div>`;
   }else{
-    pane.innerHTML=`<div class="pbar"></div><div class="loader"><div><div class="skel"><i></i><i></i><i></i></div><strong>Abriendo ${t.short}</strong><span>${t.slow||'Está tardando un poco más de lo normal. Si no aparece, usá Abrir aparte.'}</span></div></div>`;
+    pane.innerHTML=`<div class="pbar"></div><div class="loader"><div><div class="mascot-slot big">${mascot()}</div><div class="skel"><i></i><i></i><i></i></div><strong>Abriendo ${t.short}</strong><span>${t.slow||'Está tardando un poco más de lo normal. Si no aparece, usá Abrir aparte.'}</span></div></div>`;
     const f=document.createElement('iframe');
     f.title=t.name; f.allow='clipboard-read; clipboard-write; fullscreen';
+    /* los sitios externos corren aislados; las herramientas propias necesitan acceso a su almacenamiento */
+    if(t.kind==='web') f.setAttribute('sandbox','allow-scripts allow-same-origin allow-forms allow-downloads allow-popups allow-modals');
     f.addEventListener('load',()=>{pane.classList.remove('loading','slow');clearTimeout(pane._t)});
     pane.appendChild(f);
     $('#frame').appendChild(pane);
+    panes[t.id]=pane;
+    /* si el archivo de una herramienta propia todavía no está publicado, avisamos en vez de mostrar una página 404 */
+    if(t.kind==='local'){
+      fetch(t.src,{method:'HEAD',cache:'no-store'}).then(r=>{
+        if(r.ok) return;
+        clearTimeout(pane._t);
+        pane.innerHTML=`<div class="empty"><div><div class="eico">${ico(t.icon)}</div><h3>${t.name} todavía no está disponible</h3><p>No encontramos el archivo <code>${t.src}</code>. Verificá que esté subido a la carpeta <code>herramientas</code> del sitio.</p></div></div>`;
+      }).catch(()=>{});
+    }
     startLoad(pane,t,f);
-    panes[t.id]=pane; return pane;
+    return pane;
   }
   $('#frame').appendChild(pane);
   panes[t.id]=pane; return pane;
@@ -542,6 +611,8 @@ function showTool(t){
   setNav(t.id); setMenu(false);
   document.title=`${t.name} | VOLKSIA Workspace`;
   pushRecent(t.id);
+  /* lectores de pantalla: anunciar la herramienta que se abrió */
+  $('#stName').focus({preventScroll:true});
 }
 function showHome(){
   current=null;
@@ -552,6 +623,7 @@ function showHome(){
   document.title='VOLKSIA Workspace';
   renderRecents();
   $('#home').scrollTop=0;
+  if(booted) $('#main').focus({preventScroll:true});
 }
 function route(){
   const id=decodeURIComponent(location.hash.slice(1));
@@ -598,8 +670,9 @@ function renderPal(){
   const q=norm(palInput.value.trim());
   palShown=palItems().filter(i=>!q||norm(i.label+' '+i.hint+' '+(i.keys||'')).includes(q));
   palSel=Math.min(palSel,Math.max(palShown.length-1,0));
-  palList.innerHTML=palShown.length?palShown.map((i,n)=>`<li class="pli${n===palSel?' sel':''}" role="option" data-n="${n}" style="--t:${i.color}"><span class="pi">${ico(i.icon)}</span><span><b>${i.label}</b><small>${i.hint}</small></span><span class="ent">${ico('i-enter')}</span></li>`).join(''):`<li class="palnone">No encontramos resultados. Probá con otra palabra.</li>`;
+  palList.innerHTML=palShown.length?palShown.map((i,n)=>`<li class="pli${n===palSel?' sel':''}" id="pal-${n}" role="option" aria-selected="${n===palSel}" data-n="${n}" style="--t:${i.color}"><span class="pi">${ico(i.icon)}</span><span><b>${i.label}</b><small>${i.hint}</small></span><span class="ent">${ico('i-enter')}</span></li>`).join(''):`<li class="palnone">No encontramos resultados. Probá con otra palabra.</li>`;
   const s=palList.querySelector('.sel'); if(s) s.scrollIntoView({block:'nearest'});
+  palInput.setAttribute('aria-activedescendant', s ? s.id : '');
 }
 function openPal(){setMenu(false);palInput.value='';palSel=0;renderPal();if(!pal.open)pal.showModal();palInput.focus()}
 function runPal(n){const it=palShown[n];if(!it)return;pal.close();it.run()}
@@ -610,7 +683,7 @@ palInput.addEventListener('keydown',e=>{
   else if(e.key==='Enter'){e.preventDefault();runPal(palSel)}
 });
 palList.addEventListener('click',e=>{const li=e.target.closest('.pli');if(li)runPal(+li.dataset.n)});
-palList.addEventListener('mousemove',e=>{const li=e.target.closest('.pli');if(li&&+li.dataset.n!==palSel){palSel=+li.dataset.n;palList.querySelectorAll('.pli').forEach((x,n)=>x.classList.toggle('sel',n===palSel))}});
+palList.addEventListener('mousemove',e=>{const li=e.target.closest('.pli');if(li&&+li.dataset.n!==palSel){palSel=+li.dataset.n;palList.querySelectorAll('.pli').forEach((x,n)=>{x.classList.toggle('sel',n===palSel);x.setAttribute('aria-selected',String(n===palSel))});palInput.setAttribute('aria-activedescendant','pal-'+palSel)}});
 pal.addEventListener('click',e=>{if(e.target===pal)pal.close()});
 $('#palbtn').addEventListener('click',openPal);
 
@@ -618,13 +691,485 @@ addEventListener('keydown',e=>{
   const k=e.key.toLowerCase();
   if((e.ctrlKey||e.metaKey)&&k==='k'){e.preventDefault();pal.open?pal.close():openPal();return}
   if(k==='/'&&!pal.open&&!/input|textarea/i.test(document.activeElement.tagName)){e.preventDefault();openPal();return}
+  /* en el inicio, las teclas 1 a 9 abren la herramienta con ese número */
+  if(!current&&!pal.open&&!e.ctrlKey&&!e.metaKey&&!e.altKey&&/^[1-9]$/.test(e.key)&&!/input|textarea|select/i.test(document.activeElement.tagName)){
+    const t=TOOLS[+e.key-1]; if(t){e.preventDefault();location.hash=t.id;return}
+  }
   if(k==='escape'&&!pal.open){
     if(app.classList.contains('focus')) setFocus(false); else setMenu(false);
   }
 });
 
+/* ---------- Skill /bencho: Heat word (en el inicio) ---------- */
+(function(){
+/* ══ Heat word ════════════════════════════════════════════
+   A big word in flat, dull grey — until the hand comes. Around
+   the cursor the word turns into a heat map of its own shape:
+   deep navy in the middle of every stroke, through blue, cyan,
+   yellow, orange and red, to a pink rim. Right under the pointer
+   the heat opens up and the strokes thin, like something melting;
+   leave and it fades back to grey. Press it and the next shape
+   melts in.
+
+   ── A FIELD, THEN A PALETTE ─────────────────────────────
+   The word is drawn once, blurred, into a grey field: bright in
+   the thick of a stroke, fading at its edge. The cursor adds a
+   soft round of heat to that field. Every pixel's brightness is
+   then looked up in a 256-entry table of colours. Two strokes
+   close together overlap in the field, so they fuse where the
+   heat pools — that is the liquid, and nothing animates it but
+   the field.
+
+   ── THE BLUR IS A SHADOW ────────────────────────────────
+   ctx.filter is not in every Safari, shadowBlur is. The word is
+   drawn far off the canvas with its shadow thrown back on, so
+   only the blurred shadow lands. */
+
+/* (Port a JS sin React: este proyecto es HTML puro, así que el
+   estado vive en variables y el lienzo se pinta directo.) */
+
+/* más ancho que el original: "VOLKSIA" tiene siete letras y necesita aire para leerse */
+const W = 380;
+const H = 150;
+/* one word, always: its curves and its straight stems both melt well */
+const word = "VOLKSIA";
+
+const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
+
+/* the word is the panel's own display face (Bricolage Grotesque, bold),
+   so it is already on the page and never fetched twice */
+const FACE = { family: "Bricolage Grotesque", weight: 700 };
+
+/* ── or a shape, instead of a word ─────────────────────────
+   The heat reads any shape, and the ones that look most liquid
+   are where strokes meet or nearly touch: bars crossing at a
+   centre, dots close enough to run together. Each takes a seed,
+   so a press deals a new arrangement of the same kind. */
+const SHAPES = ["Word", "Dots", "Asterisk"];
+
+function rng(seed) {
+  let t = seed * 9301 + 49297;
+  return () => {
+    t = (t * 9301 + 49297) % 233280;
+    return t / 233280;
+  };
+}
+
+/* a thick line through a list of points */
+function line(g, pts) {
+  g.beginPath();
+  pts.forEach(([x, y], i) => (i ? g.lineTo(x, y) : g.moveTo(x, y)));
+  g.stroke();
+}
+
+/* where the hand is, in the field's pixels, and how present it is:
+   { x, y, on, area } */
+function drawShape(g, shape, w, h, r, seed, hand) {
+  const rand = rng(seed);
+  const cx = w / 2, cy = h / 2;
+  g.lineCap = "round";
+  g.lineJoin = "round";
+  if (shape === "Dots") {
+    /* a loose grid, near enough that neighbours run together. The
+       dots under the hand swell, on a gaussian, so the ones nearest
+       grow into each other and fuse while the far ones keep their
+       size — and the rand() calls stay in the same order, so the
+       arrangement never shifts while they do */
+    const cols = 7, rows = 3;
+    const reach = 62 * r * (hand ? hand.area : 1);
+    for (let j = 0; j < rows; j++) {
+      for (let i = 0; i < cols; i++) {
+        const x = cx + (i - (cols - 1) / 2) * 38 * r + (rand() - 0.5) * 8 * r;
+        const y = cy + (j - (rows - 1) / 2) * 38 * r + (rand() - 0.5) * 8 * r;
+        let rad = (9 + rand() * 7) * r;
+        if (hand && hand.on > 0.002) {
+          const d2 = ((x - hand.x) ** 2 + (y - hand.y) ** 2) / (reach * reach);
+          rad *= 1 + 0.75 * hand.on * Math.exp(-d2);
+        }
+        g.beginPath();
+        g.arc(x, y, rad, 0, Math.PI * 2);
+        g.fill();
+      }
+    }
+  } else if (shape === "Asterisk") {
+    /* fat bars crossing, every one of them through the centre */
+    g.lineWidth = 16 * r;
+    const n = 3 + Math.floor(rand() * 2), turn = rand() * Math.PI;
+    for (let i = 0; i < n; i++) {
+      const a = turn + (i / n) * Math.PI;
+      const c = Math.cos(a) * 66 * r, sn = Math.sin(a) * 66 * r;
+      line(g, [[cx - c, cy - sn], [cx + c, cy + sn]]);
+    }
+  }
+}
+
+/* the face is on the page already, but may not have arrived by
+   the first frame — waited for, or the first word is the fallback.
+   Never waited for long: after a second and a half it is drawn
+   in the fallback, which is still a word. */
+async function ensure() {
+  try {
+    await Promise.race([
+      document.fonts && document.fonts.load(`${FACE.weight} 100px "${FACE.family}"`),
+      new Promise((r) => setTimeout(r, 1500)),
+    ]);
+  } catch (e) {
+    /* drawn in the fallback, which is still a word */
+  }
+}
+
+/* the palettes, rim (0) to core (1); below the floor it is the card.
+   Neon is the heat camera: a pink rim through red, yellow and
+   cyan to a navy core. The others keep its shape — a light rim, a
+   dark core, a bright band between — in other colours. */
+const PALETTES = {
+  Neon: [
+    [0.0, [255, 150, 225]],
+    [0.1, [255, 90, 190]],
+    [0.2, [255, 50, 60]],
+    [0.32, [255, 150, 40]],
+    [0.42, [255, 228, 100]],
+    [0.54, [120, 215, 255]],
+    [0.68, [40, 120, 245]],
+    [0.84, [12, 44, 150]],
+    [1.0, [6, 18, 80]],
+  ],
+  Fire: [
+    [0.0, [255, 238, 180]],
+    [0.16, [255, 200, 80]],
+    [0.34, [255, 130, 30]],
+    [0.52, [228, 58, 28]],
+    [0.72, [150, 18, 44]],
+    [0.88, [74, 6, 42]],
+    [1.0, [30, 2, 24]],
+  ],
+  Sea: [
+    [0.0, [210, 255, 225]],
+    [0.16, [110, 245, 175]],
+    [0.34, [40, 215, 200]],
+    [0.52, [40, 150, 235]],
+    [0.72, [80, 70, 205]],
+    [0.88, [60, 20, 130]],
+    [1.0, [24, 8, 60]],
+  ],
+  Pop: [
+    [0.0, [255, 225, 240]],
+    [0.16, [255, 160, 210]],
+    [0.34, [245, 110, 190]],
+    [0.52, [180, 110, 255]],
+    [0.72, [100, 150, 255]],
+    [0.88, [40, 70, 190]],
+    [1.0, [20, 24, 100]],
+  ],
+};
+const FLOOR = 34;
+
+function table(STOPS) {
+  const t = new Uint8ClampedArray(256 * 4);
+  for (let i = 0; i < 256; i++) {
+    if (i < FLOOR) {
+      /* under the floor: nothing, so the card shows through */
+      t[i * 4 + 3] = 0;
+      continue;
+    }
+    const u = (i - FLOOR) / (255 - FLOOR);
+    let k = 0;
+    while (k < STOPS.length - 2 && u > STOPS[k + 1][0]) k++;
+    const [u0, c0] = STOPS[k];
+    const [u1, c1] = STOPS[k + 1];
+    const f = clamp((u - u0) / (u1 - u0), 0, 1);
+    for (let c = 0; c < 3; c++) t[i * 4 + c] = c0[c] + (c1[c] - c0[c]) * f;
+    /* the rim fades in over the first stretch, so the pink is a
+       glow at the edge rather than a hard line */
+    t[i * 4 + 3] = 255 * clamp((i - FLOOR) / 26, 0, 1);
+  }
+  return t;
+}
+/* one table per palette, made the first time it is asked for */
+const LUTS = new Map();
+function lut(name) {
+  let t = LUTS.get(name);
+  if (!t) {
+    t = table(PALETTES[name] || PALETTES.Neon);
+    LUTS.set(name, t);
+  }
+  return t;
+}
+
+/* ── and at rest, just grey ────────────────────────────────
+   The word sits on the card as a flat, dull grey — solid where
+   the heat would be, soft at the edge — and the heat map is only
+   ever shown where the hand is. GREY_A is the grey's alpha per
+   brightness: the letter's body at full, a short soft edge. */
+const GREY = [150, 150, 154];
+const GREY_A = new Uint8ClampedArray(256);
+for (let i = 0; i < 256; i++) GREY_A[i] = 255 * clamp((i - 70) / 45, 0, 1);
+
+const el = document.getElementById("heat");
+const shown = document.getElementById("heatCv");
+if (!el || !shown) return;
+
+/* how much heat the cursor brings, how soft the letters are, how big the
+   patch under the hand is (each 0..100), and which heat map it reveals */
+const knobs = { heat: 60, soft: 18, area: 50, colors: "Neon" };
+let seed = Math.floor(Math.random() * 1000);
+let shape = "Word";
+const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
+const st = {
+  base: null, work: null,
+  px: 0.5, py: 0.5, tx: 0.5, ty: 0.5,
+  power: 0, want: 0,
+  grow: 0,
+  raf: 0,
+  ratio: 1,
+  /* the dots were last drawn swollen, and owe one redraw at rest */
+  swollen: false,
+};
+/* Area as a multiplier on every radius the hand has: half at 0,
+   as it was at 50, half again at 100 */
+const spread = () => 0.5 + clamp(knobs.area, 0, 100) / 100;
+
+/* the word, blurred, into the base field — redrawn when the
+   word or the softness changes */
+function build() {
+  const s = st;
+  const r = Math.min(2, window.devicePixelRatio || 1);
+  s.ratio = r;
+  const w = Math.round(W * r), h = Math.round(H * r);
+  const base = s.base || document.createElement("canvas");
+  base.width = w; base.height = h;
+  s.base = base;
+  if (!s.work) s.work = document.createElement("canvas");
+  s.work.width = w; s.work.height = h;
+  shown.width = w; shown.height = h;
+  field();
+}
+
+/* the field itself, into the base at its current size — once per
+   build for a word, and every frame the hand moves for the dots,
+   which change size under it */
+function field() {
+  const s = st;
+  const base = s.base;
+  const r = s.ratio;
+  const w = base.width, h = base.height;
+  const g = base.getContext("2d");
+  g.setTransform(1, 0, 0, 1, 0, 0);
+  g.shadowColor = "transparent";
+  g.fillStyle = "#000";
+  g.fillRect(0, 0, w, h);
+  const blur = (6 + (clamp(knobs.soft, 0, 100) / 100) * 16) * r;
+  const off = w * 3;
+  g.shadowColor = "#fff";
+  g.shadowBlur = blur;
+  g.shadowOffsetX = off;
+  g.fillStyle = "#fff";
+  g.strokeStyle = "#fff";
+  if (shape !== "Word") {
+    /* drawn off the canvas so only the blurred shadow lands */
+    g.save();
+    g.translate(-off, 0);
+    const hand = { x: s.px * w, y: s.py * h, on: s.power, area: spread() };
+    drawShape(g, shape, w, h, r, seed, hand);
+    drawShape(g, shape, w, h, r, seed, hand);
+    g.restore();
+    return;
+  }
+  /* as large as fits */
+  let size = 150 * r;
+  const f = `"${FACE.family}", system-ui, sans-serif`;
+  g.font = `${FACE.weight} ${size}px ${f}`;
+  const fit = (w * 0.88) / g.measureText(word).width;
+  size = Math.min(size, size * fit);
+  g.font = `${FACE.weight} ${size}px ${f}`;
+  g.textAlign = "center";
+  g.textBaseline = "middle";
+  /* twice over, so the thick of a stroke saturates */
+  g.fillText(word, w / 2 - off, h / 2 + size * 0.04);
+  g.fillText(word, w / 2 - off, h / 2 + size * 0.04);
+}
+
+/* one frame: base, plus heat at the cursor, through the palette */
+function paint() {
+  const s = st;
+  const c = shown;
+  if (!s.base || !s.work) return;
+  const w = c.width, h = c.height;
+  /* the dots follow the hand, so their field is redrawn with it */
+  if (shape === "Dots" && (s.power > 0.002 || s.swollen)) {
+    field();
+    s.swollen = s.power > 0.002;
+  }
+  const g = s.work.getContext("2d", { willReadFrequently: true });
+  g.globalCompositeOperation = "source-over";
+  g.globalAlpha = 1;
+  g.fillStyle = "#000";
+  g.fillRect(0, 0, w, h);
+  /* the shape grows in from nothing when it changes */
+  g.globalAlpha = s.grow;
+  g.drawImage(s.base, 0, 0);
+  g.globalAlpha = 1;
+  if (s.power > 0.002) {
+    const cx = s.px * w, cy = s.py * h;
+    const rad = (60 + (knobs.heat / 100) * 50) * s.ratio * spread();
+    const amt = s.power * (0.35 + (knobs.heat / 100) * 0.55);
+    /* the cursor COOLS the field: a multiply that dims it toward
+       the middle of the pointer, so the navy cores open up into
+       rings of blue, cyan, yellow and red and the strokes thin
+       there — the letters melting under the hand */
+    g.globalCompositeOperation = "multiply";
+    const cool = g.createRadialGradient(cx, cy, 0, cx, cy, rad);
+    const v = (k) => Math.round(255 * (1 - amt * k));
+    cool.addColorStop(0, `rgb(${v(1)},${v(1)},${v(1)})`);
+    cool.addColorStop(0.45, `rgb(${v(0.6)},${v(0.6)},${v(0.6)})`);
+    cool.addColorStop(1, "rgb(255,255,255)");
+    g.fillStyle = cool;
+    g.fillRect(0, 0, w, h);
+  }
+  const src = g.getImageData(0, 0, w, h).data;
+  const LUT = lut(knobs.colors);
+  const out = c.getContext("2d").createImageData(w, h);
+  const d = out.data;
+  /* the reveal: how much heat map each pixel shows, a soft disc
+     around the cursor scaled by how present the hand is. Outside
+     it the word is grey. */
+  const cx = s.px * w, cy = s.py * h;
+  const R = (95 + (knobs.heat / 100) * 55) * s.ratio * spread();
+  const R2 = R * R;
+  const on = s.power;
+  for (let y = 0, i = 0; y < h; y++) {
+    const dy2 = (y - cy) * (y - cy);
+    for (let x = 0; x < w; x++, i += 4) {
+      const f = src[i];
+      const v = f * 4;
+      let m = 0;
+      if (on > 0.002) {
+        const q = ((x - cx) * (x - cx) + dy2) / R2;
+        if (q < 1) {
+          const t = 1 - q;
+          m = on * t * t * (3 - 2 * t);
+        }
+      }
+      const ga = GREY_A[f];
+      if (m <= 0) {
+        d[i] = GREY[0]; d[i + 1] = GREY[1]; d[i + 2] = GREY[2]; d[i + 3] = ga;
+        continue;
+      }
+      const k = 1 - m;
+      d[i] = GREY[0] * k + LUT[v] * m;
+      d[i + 1] = GREY[1] * k + LUT[v + 1] * m;
+      d[i + 2] = GREY[2] * k + LUT[v + 2] * m;
+      d[i + 3] = ga * k + LUT[v + 3] * m;
+    }
+  }
+  c.getContext("2d").putImageData(out, 0, 0);
+}
+
+/* the loop runs only while something is moving */
+function run() {
+  const s = st;
+  if (s.raf) return;
+  let prev = performance.now();
+  const step = (t) => {
+    const dt = Math.min(0.05, (t - prev) / 1000);
+    prev = t;
+    const k = 1 - Math.pow(0.002, dt);
+    s.px += (s.tx - s.px) * k;
+    s.py += (s.ty - s.py) * k;
+    s.power += (s.want - s.power) * (1 - Math.pow(0.01, dt));
+    s.grow = Math.min(1, s.grow + dt / 0.9);
+    paint();
+    const still = s.grow >= 1 && Math.abs(s.want - s.power) < 0.004 && Math.abs(s.tx - s.px) < 0.001 && Math.abs(s.ty - s.py) < 0.001;
+    if (still && s.want === 0) s.power = 0;
+    s.raf = still ? 0 : requestAnimationFrame(step);
+    if (still) paint();
+  };
+  s.raf = requestAnimationFrame(step);
+}
+
+function go() {
+  cancelAnimationFrame(st.raf); st.raf = 0;
+  build();
+  st.grow = reduced ? 1 : 0;
+  run();
+}
+/* the face first, or the first word is drawn in the fallback */
+ensure().then(go);
+
+function aim(e) {
+  const r = el.getBoundingClientRect();
+  st.tx = (e.clientX - r.left) / r.width;
+  st.ty = (e.clientY - r.top) / r.height;
+}
+function next() {
+  /* the next shape round, the dots and the asterisk dealt a
+     fresh arrangement as they come back */
+  const i = SHAPES.indexOf(shape);
+  seed += 1;
+  shape = SHAPES[(i + 1) % SHAPES.length];
+  el.setAttribute("aria-label", shape === "Word" ? `${word}. Tocá para cambiar de forma` : `${shape === "Dots" ? "Puntos" : "Asterisco"}. Tocá para cambiar de forma`);
+  ensure().then(go);
+}
+el.addEventListener("pointerenter", (e) => { aim(e); st.px = st.tx; st.py = st.ty; st.want = 1; run(); });
+el.addEventListener("pointermove", (e) => { aim(e); st.want = 1; run(); });
+el.addEventListener("pointerleave", () => { st.want = 0; run(); });
+el.addEventListener("click", next);
+el.addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); next(); } });
+})();
+
+/* ---------- Mascota: te sigue con la mirada ---------- */
+/* Un robotito propio de VOLKSIA. Tiene cuerpo azul marino, antena celeste
+   (el mismo puntito del logo anterior), ojos que siguen el cursor,
+   parpadea cada tanto y pega un saltito si lo tocás. */
+function mascot(){
+  return `<svg class="mascot" viewBox="0 0 64 64" role="img" aria-label="VOLKSIA">
+    <g class="m-hop">
+      <rect x="18" y="52" width="10" height="7" rx="3.5" fill="#0B3C86"/>
+      <rect x="36" y="52" width="10" height="7" rx="3.5" fill="#0B3C86"/>
+      <g class="m-head" transform="rotate(0 32 54)">
+        <g class="m-ant"><path d="M32 14V9" stroke="#00A8F0" stroke-width="3" stroke-linecap="round"/><circle cx="32" cy="7" r="4.2" fill="#00A8F0"/></g>
+        <rect x="8" y="14" width="48" height="40" rx="15" fill="#001E50" stroke="rgba(124,196,255,.38)" stroke-width="1.5"/>
+        <g class="m-eye"><circle cx="23.5" cy="31" r="8.5" fill="#fff"/><g class="m-pupil"><circle cx="23.5" cy="31" r="4.2" fill="#0A1A2F"/><circle cx="25" cy="29.5" r="1.3" fill="#fff"/></g></g>
+        <g class="m-eye"><circle cx="40.5" cy="31" r="8.5" fill="#fff"/><g class="m-pupil"><circle cx="40.5" cy="31" r="4.2" fill="#0A1A2F"/><circle cx="42" cy="29.5" r="1.3" fill="#fff"/></g></g>
+        <path d="M26 46q6 5 12 0" fill="none" stroke="#00A8F0" stroke-width="2.6" stroke-linecap="round"/>
+      </g>
+    </g>
+  </svg>`;
+}
+document.querySelectorAll('[data-mascot]').forEach(n=>{n.innerHTML=mascot()});
+
+let mx=null,my=null,mraf=0;
+function lookAt(){
+  mraf=0;
+  document.querySelectorAll('.mascot').forEach(svg=>{
+    const r=svg.getBoundingClientRect(); if(!r.width) return;
+    let px=0,py=0,tilt=0;
+    if(mx!==null){
+      const dx=mx-(r.left+r.width/2), dy=my-(r.top+r.height*.5), dist=Math.hypot(dx,dy)||1;
+      /* cerca del muñeco mira de frente al cursor; lejos, llega al borde del ojo */
+      const k=Math.min(1,dist/140), max=3.6;
+      px=dx/dist*max*k; py=dy/dist*max*k;
+      tilt=Math.max(-8,Math.min(8,dx/60));
+    }
+    svg.querySelectorAll('.m-pupil').forEach(p=>p.setAttribute('transform',`translate(${px.toFixed(2)} ${py.toFixed(2)})`));
+    svg.querySelector('.m-head').setAttribute('transform',`rotate(${tilt.toFixed(1)} 32 54)`);
+  });
+}
+const lookSoon=()=>{ if(!mraf) mraf=requestAnimationFrame(lookAt); };
+addEventListener('pointermove',e=>{mx=e.clientX;my=e.clientY;lookSoon()},{passive:true});
+addEventListener('pointerdown',e=>{mx=e.clientX;my=e.clientY;lookSoon()},{passive:true});
+/* si el cursor sale de la ventana, vuelve a mirar al frente */
+document.addEventListener('mouseleave',()=>{mx=null;lookSoon()});
+/* saltito al tocar el logo */
+$('.brand').addEventListener('click',()=>{
+  const m=$('.brand .mascot'); if(!m) return;
+  m.classList.remove('hop'); void m.getBoundingClientRect(); m.classList.add('hop');
+  setTimeout(()=>m.classList.remove('hop'),650);
+});
+
 /* ---------- Inicio ---------- */
-buildNav(); buildCards(); route();
+let booted=false;
+buildNav(); buildCards(); route(); booted=true;
 setTimeout(()=>app.classList.remove('intro'),1400);
 </script>
 </body>
