@@ -3,15 +3,15 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#EEF1F5">
-<meta name="description" content="VOLKSIA Workspace: todas las herramientas de trabajo en un solo lugar.">
+<meta name="theme-color" content="#030711">
+<meta name="description" content="SURI Tools Center: todas las herramientas de trabajo en un solo lugar.">
 <meta name="robots" content="noindex,nofollow">
 <meta name="color-scheme" content="light dark">
 <meta property="og:type" content="website">
-<meta property="og:title" content="VOLKSIA Workspace">
+<meta property="og:title" content="SURI Tools Center">
 <meta property="og:description" content="Turnero, asistencia, encuestas y certificados en un solo panel de trabajo.">
 <meta name="twitter:card" content="summary">
-<title>VOLKSIA Workspace</title>
+<title>SURI Tools Center</title>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect x='8' y='14' width='48' height='40' rx='15' fill='%23001E50'/%3E%3Cpath d='M32 14V9' stroke='%2300A8F0' stroke-width='3' stroke-linecap='round'/%3E%3Ccircle cx='32' cy='7' r='4.2' fill='%2300A8F0'/%3E%3Ccircle cx='23.500' cy='32' r='8.500' fill='%23fff'/%3E%3Ccircle cx='40.500' cy='32' r='8.500' fill='%23fff'/%3E%3Ccircle cx='24.500' cy='33' r='4.200' fill='%230A1A2F'/%3E%3Ccircle cx='41.500' cy='33' r='4.200' fill='%230A1A2F'/%3E%3Cpath d='M26 46q6 5 12 0' fill='none' stroke='%2300A8F0' stroke-width='2.600' stroke-linecap='round'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -26,8 +26,8 @@
   color-scheme:light;
 }
 html[data-theme="dark"]{
-  --bg:#050C18;--surface:#0B1729;--surface-2:#0F2037;--ink:#EAF1FA;--ink-2:#9BABC3;--ink-3:#6B7D99;
-  --line:#1A2C47;--line-2:#27406A;--brand:#7CC4FF;--sky:#3DB8FF;--ok:#2DD18E;--bad:#FF6F66;--ring:#3DB8FF;
+  --bg:#030711;--deep:#061326;--surface:#0A1930;--surface-2:#102441;--ink:#F4F8FF;--ink-2:#91A7C4;--ink-3:#6C83A3;
+  --line:#16315A;--line-2:#1F4A86;--brand:#24E5FF;--sky:#168CFF;--electric:#0866FF;--cyan:#24E5FF;--ok:#2DD18E;--bad:#FF6F66;--ring:#24E5FF;
   color-scheme:dark;
 }
 *{box-sizing:border-box}
@@ -287,6 +287,31 @@ dialog.pal::backdrop{background:rgba(3,10,22,.55);backdrop-filter:blur(4px)}
   .c-lg .cbody h3{font-size:26px}
 }
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+
+/* ---------- SURI: capa futurista (solo tema oscuro) ---------- */
+html[data-theme="dark"] body{background:radial-gradient(900px 520px at 85% -10%,rgba(8,102,255,.22),transparent 60%),radial-gradient(700px 480px at -5% 105%,rgba(36,229,255,.10),transparent 60%),var(--bg)}
+html[data-theme="dark"] .rail{background:linear-gradient(180deg,rgba(10,25,48,.92),rgba(6,19,38,.92));backdrop-filter:blur(14px);border-right-color:rgba(36,229,255,.14)}
+html[data-theme="dark"] .card{background:linear-gradient(160deg,var(--surface-2),var(--surface));border-color:rgba(22,140,255,.28);box-shadow:0 0 0 1px rgba(36,229,255,.04) inset,0 14px 40px -18px rgba(8,102,255,.55)}
+html[data-theme="dark"] .card:hover{border-color:var(--cyan);box-shadow:0 0 28px -6px rgba(36,229,255,.45)}
+html[data-theme="dark"] .topbar{background:rgba(3,7,17,.6);backdrop-filter:blur(12px)}
+.card{position:relative}
+.fav{position:absolute;top:12px;right:12px;z-index:3;width:38px;height:38px;display:grid;place-items:center;border-radius:12px;border:1px solid var(--line-2);background:color-mix(in srgb,var(--surface) 80%,transparent);color:var(--ink-3);transition:color .15s,transform .15s,border-color .15s}
+.fav:hover{color:var(--cyan);border-color:var(--cyan)}
+.fav[aria-pressed="true"]{color:#FFC93C;border-color:#FFC93C}.fav[aria-pressed="true"] svg{fill:currentColor}
+.fav:active{transform:scale(.92)}
+.chip.st{display:inline-flex;align-items:center;gap:6px}
+.chip.st .sd{width:8px;height:8px;border-radius:50%;background:var(--ink-3)}
+.chip.st[data-s="ok"] .sd{background:var(--ok);box-shadow:0 0 8px var(--ok)}
+.chip.st[data-s="bad"] .sd{background:var(--bad)}
+.chip.st[data-s="wait"] .sd{animation:stp 1s infinite alternate}
+@keyframes stp{to{opacity:.25}}
+.setdlg{border:1px solid var(--line-2);border-radius:20px;background:var(--surface);color:var(--ink);width:min(560px,calc(100vw - 24px));max-height:calc(100dvh - 24px);padding:0;box-shadow:0 30px 80px -20px rgba(8,102,255,.5)}
+.setdlg::backdrop{background:rgba(3,7,17,.7);backdrop-filter:blur(4px)}
+.setin{padding:22px;display:grid;gap:14px;overflow:auto;max-height:calc(100dvh - 24px)}
+.setin h2{margin:0;font:700 22px var(--display)}.setin p,.setin small{margin:0;color:var(--ink-2)}
+.setin input{width:100%;padding:12px 14px;min-height:44px;border-radius:12px;border:1px solid var(--line-2);background:var(--bg)}
+.setin .row{display:flex;gap:10px;flex-wrap:wrap}.setin .err{color:var(--bad);min-height:1.2em;font-size:13px}
+@media (prefers-reduced-motion:reduce){.chip.st .sd{animation:none}}
 </style>
 </head>
 <body>
@@ -331,9 +356,9 @@ dialog.pal::backdrop{background:rgba(3,10,22,.55);backdrop-filter:blur(4px)}
   <div class="scrim" id="scrim"></div>
 
   <aside class="rail" id="rail" aria-label="Navegación principal">
-    <a class="brand" href="#inicio" aria-label="VOLKSIA, ir al inicio">
+    <a class="brand" href="#inicio" aria-label="SURI, ir al inicio">
       <span class="mascot-slot" data-mascot></span>
-      <div><b>VOLKSIA</b><small>Workspace</small></div>
+      <div><b>SURI</b><small>Tools Center</small></div>
     </a>
     <nav class="railnav" id="railnav"></nav>
     <div class="railfoot">
@@ -364,7 +389,7 @@ dialog.pal::backdrop{background:rgba(3,10,22,.55);backdrop-filter:blur(4px)}
               <h1 id="greet">Buen día.</h1>
               <p>Elegí una herramienta para empezar a trabajar.</p>
             </div>
-            <div class="heat" id="heat" style="--i:1" role="button" tabindex="0" aria-label="VOLKSIA. Tocá para cambiar de forma"><canvas class="heat-canvas" id="heatCv" aria-hidden="true"></canvas></div>
+            <div class="heat" id="heat" style="--i:1" role="button" tabindex="0" aria-label="SURI. Tocá para cambiar de forma"><canvas class="heat-canvas" id="heatCv" aria-hidden="true"></canvas></div>
             <div class="clock" style="--i:1" aria-live="off">
               <div class="time"><span id="clockHM">--:--</span><span class="sec" id="clockS">--</span></div>
               <div class="date" id="clockDate"></div>
@@ -376,10 +401,12 @@ dialog.pal::backdrop{background:rgba(3,10,22,.55);backdrop-filter:blur(4px)}
             <div id="rlist" style="display:contents"></div>
           </div>
 
+          <div class="recents" id="favs" hidden style="--i:2"><h2>Favoritas</h2><div id="flist" style="display:contents"></div></div>
+
           <div class="bento" id="bento"></div>
 
           <div class="foot">
-            <span>VOLKSIA Workspace para Organización Sur</span>
+            <span>SURI Tools Center · Organización Sur</span>
             <span>Atajo para buscar: <kbd id="palkey2">Ctrl K</kbd></span>
           </div>
         </div>
@@ -414,6 +441,15 @@ dialog.pal::backdrop{background:rgba(3,10,22,.55);backdrop-filter:blur(4px)}
   <div class="palfoot"><span><kbd>↑</kbd><kbd>↓</kbd> moverse</span><span><kbd>Enter</kbd> abrir</span></div>
 </dialog>
 
+<dialog class="setdlg" id="setdlg" aria-labelledby="setTitle"><div class="setin">
+  <h2 id="setTitle">Configuración</h2>
+  <label for="aiUrl"><b>Dirección de SURI (IA principal)</b></label>
+  <input id="aiUrl" type="url" inputmode="url" placeholder="https://..." autocomplete="off" spellcheck="false">
+  <div class="err" id="aiErr" role="alert"></div>
+  <div class="row"><button class="btn primary" id="aiSave" type="button">Guardar dirección</button><button class="btn" id="aiClear" type="button">Quitar</button><button class="btn" id="setClose" type="button">Cerrar</button></div>
+  <small>Solo se aceptan direcciones https:// sin usuario ni contraseña. Si el sitio no permite mostrarse dentro del centro, se ofrece abrirlo en una pestaña nueva.</small>
+  <p><b>Tus datos:</b> favoritas, recientes, tema y esta dirección se guardan en <em>este navegador y este dispositivo</em>. No se sincronizan con otros trabajadores ni equipos. No guardes contraseñas acá.</p>
+</div></dialog>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
 <script>
@@ -422,7 +458,8 @@ dialog.pal::backdrop{background:rgba(3,10,22,.55);backdrop-filter:blur(4px)}
    Ejemplo: const AI_URL = "https://mi-ia.com";
    Tiene que empezar con https:// para que funcione en GitHub Pages.
    ============================================================ */
-const AI_URL = "";
+const AI_URL = (()=>{try{const v=localStorage.getItem('suri_ai_url');if(!v)return "";const u=new URL(JSON.parse(v));
+  return (u.protocol==='https:'&&!u.username&&!u.password)?u.href:"";}catch(e){return ""}})();
 
 /* Si tu IA no se muestra dentro del panel (muchos sitios lo bloquean),
    poné false y se abrirá en una pestaña nueva con un botón. */
@@ -434,7 +471,7 @@ const ALL_TOOLS = [
   {id:'asistencia', name:'Control de Asistencia', short:'Asistencia', desc:'Proyecto de control de asistencia de Organización Sur.', src:'herramientas/control-asistencia.html', kind:'local', color:'#0E9F8E', icon:'i-clock', size:'c-md', keys:'presentismo horarios ingreso egreso'},
   {id:'encuestas', name:'Gestor de Encuestas', short:'Encuestas', desc:'Prepará y trabajá tus encuestas internas a partir de planillas de Excel.', src:'herramientas/gestor-encuestas.html', kind:'local', color:'#E08A00', icon:'i-chart', size:'c-md', keys:'encuesta interna pasos taller'},
   {id:'certificados', name:'Gestor de Certificados', short:'Certificados', desc:'Sistema web para gestionar los certificados de los trabajadores.', src:'https://gestor-certificados-06pf.onrender.com/', kind:'web', embed:false, launch:'El Gestor de Certificados tiene su propio sitio seguro y no permite mostrarse dentro de otro panel. Se abre en una pestaña nueva, y cuando termines volvés acá.', color:'#7B4DE8', icon:'i-badge', size:'c-wide', keys:'certificado sucursal trabajadores', slow:'Este sistema está alojado en internet y puede tardar hasta un minuto en despertar la primera vez.'},
-  {id:'ia', name:'Mi IA', short:'Mi IA', desc:'Tu asistente de inteligencia artificial, siempre a mano dentro del espacio de trabajo.', src:AI_URL, kind:'web', embed:AI_EMBED, launch:'Tu IA se abre en su propia pestaña porque el sitio no permite mostrarse dentro de otro panel.', color:'#00A8F0', icon:'i-spark', size:'c-full dark', keys:'inteligencia artificial asistente chat', slow:'Algunos sitios tardan en abrir. Si no aparece nada, usá Abrir aparte.'}
+  {id:'ia', name:'SURI · IA principal', short:'SURI', desc:'Tu asistente de inteligencia artificial, siempre a mano dentro del espacio de trabajo.', src:AI_URL, kind:'web', embed:AI_EMBED, launch:'Tu IA se abre en su propia pestaña porque el sitio no permite mostrarse dentro de otro panel.', color:'#00A8F0', icon:'i-spark', size:'c-full dark', keys:'inteligencia artificial asistente chat', slow:'Algunos sitios tardan en abrir. Si no aparece nada, usá Abrir aparte.'}
 ];
 /* Mi IA no aparece hasta que pegues su URL en AI_URL: así nadie ve una
    herramienta vacía ni instrucciones de configuración. */
@@ -470,11 +507,11 @@ function toast(msg){
 function setTheme(mode){
   document.documentElement.dataset.theme = mode;
   const m=document.querySelector('meta[name="theme-color"]');
-  if(m) m.content = mode==='dark' ? '#050C18' : '#EEF1F5';
+  if(m) m.content = mode==='dark' ? '#030711' : '#EEF1F5';
   store.set('volksia_theme',mode);
 }
 function toggleTheme(){ setTheme(document.documentElement.dataset.theme==='dark'?'light':'dark'); }
-setTheme(store.get('volksia_theme', matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'));
+setTheme(store.get('volksia_theme','dark'));
 $('#themebtn').addEventListener('click',toggleTheme);
 
 /* ---------- Menú lateral ---------- */
@@ -482,7 +519,7 @@ function buildNav(){
   const nav=$('#railnav');
   nav.innerHTML =
     `<a class="rl" href="#inicio" data-id="inicio" title="Inicio">${ico('i-home')}<span class="lbl">Inicio</span></a><div class="railsep"></div>` +
-    TOOLS.map(t=>`<a class="rl" href="#${t.id}" data-id="${t.id}" style="--t:${t.color}" title="${t.name}">${ico(t.icon)}<span class="lbl">${t.name}</span>${t.kind==='web'&&t.id==='certificados'?'<span class="tagweb">Web</span>':''}</a>`).join('');
+    TOOLS.map(t=>`<a class="rl" href="#${t.id}" data-id="${t.id}" style="--t:${t.color}" title="${t.name}">${ico(t.icon)}<span class="lbl">${t.name}</span>${t.kind==='web'&&t.id==='certificados'?'<span class="tagweb">Web</span>':''}</a>`).join('') + `<div class="railsep"></div><a class="rl" href="#configuracion" data-id="configuracion" title="Configuración">${ico('i-grid')}<span class="lbl">Configuración</span></a>`;
 }
 function setMenu(open){app.classList.toggle('menuopen',open)}
 $('#menubtn').addEventListener('click',()=>setMenu(true));
@@ -518,9 +555,9 @@ document.addEventListener('visibilitychange',()=>{ if(!document.hidden) tick(); 
 function buildCards(){
   $('#bento').innerHTML = TOOLS.map((t,i)=>`
     <a class="card ${t.size}" href="#${t.id}" style="--t:${t.color};--i:${i+2}" data-id="${t.id}">
-      <div class="art">${ART[t.id]}</div>
+      <div class="art">${ART[t.id]}</div><button type="button" class="fav" data-fav="${t.id}" aria-pressed="${isFav(t.id)}" aria-label="Marcar ${t.short} como favorita"><svg class="i" viewBox="0 0 24 24"><path d="M12 3.5l2.6 5.4 5.9.8-4.3 4.1 1 5.9L12 16.9 6.8 19.7l1-5.9L3.5 9.7l5.9-.8z"/></svg></button>
       <div class="cbody"><h3>${t.name}</h3><p>${t.desc}</p></div>
-      <div class="cfoot"><span class="meta"><span class="chip">${t.kind==='web'?'Sistema web':'Herramienta interna'}</span><kbd class="hk" aria-hidden="true">${i+1}</kbd></span><span class="open">Abrir ${ico('i-arrow')}</span></div>
+      <div class="cfoot"><span class="meta"><span class="chip">${t.kind==='web'?'Sistema web':'Herramienta interna'}</span><span class="chip st" data-st="${t.id}" data-s="wait"><i class="sd"></i><b>Verificando</b></span><kbd class="hk" aria-hidden="true">${i+1}</kbd></span><span class="open">Abrir ${ico('i-arrow')}</span></div>
     </a>`).join('');
 }
 
@@ -609,24 +646,26 @@ function showTool(t){
   $('#stMeta').textContent=t.kind==='web'?'Sistema web':'Herramienta interna';
   $('#crumbs').innerHTML=`<a href="#inicio">Inicio</a>${ico('i-chev')}<span class="cur">${t.name}</span>`;
   setNav(t.id); setMenu(false);
-  document.title=`${t.name} | VOLKSIA Workspace`;
+  document.title=`${t.name} | SURI Tools Center`;
   pushRecent(t.id);
   /* lectores de pantalla: anunciar la herramienta que se abrió */
   $('#stName').focus({preventScroll:true});
 }
 function showHome(){
+  renderFavs();
   current=null;
   setFocus(false);
   $('#stage').hidden=true; $('#home').hidden=false;
   $('#crumbs').innerHTML=`<span class="cur">Inicio</span>`;
   setNav('inicio'); setMenu(false);
-  document.title='VOLKSIA Workspace';
+  document.title='SURI Tools Center';
   renderRecents();
   $('#home').scrollTop=0;
   if(booted) $('#main').focus({preventScroll:true});
 }
 function route(){
   const id=decodeURIComponent(location.hash.slice(1));
+  if(id==='configuracion'){ if(!current && $('#home').hidden) showHome(); openSettings(); return; }
   const t=TOOLS.find(x=>x.id===id);
   if(t) showTool(t); else showHome();
 }
@@ -728,11 +767,11 @@ addEventListener('keydown',e=>{
 /* (Port a JS sin React: este proyecto es HTML puro, así que el
    estado vive en variables y el lienzo se pinta directo.) */
 
-/* más ancho que el original: "VOLKSIA" tiene siete letras y necesita aire para leerse */
+/* más ancho que el original: "SURI" tiene siete letras y necesita aire para leerse */
 const W = 380;
 const H = 150;
 /* one word, always: its curves and its straight stems both melt well */
-const word = "VOLKSIA";
+const word = "SURI";
 
 const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
 
@@ -1118,11 +1157,11 @@ el.addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") 
 })();
 
 /* ---------- Mascota: te sigue con la mirada ---------- */
-/* Un robotito propio de VOLKSIA. Tiene cuerpo azul marino, antena celeste
+/* Un robotito propio de SURI. Tiene cuerpo azul marino, antena celeste
    (el mismo puntito del logo anterior), ojos que siguen el cursor,
    parpadea cada tanto y pega un saltito si lo tocás. */
 function mascot(){
-  return `<svg class="mascot" viewBox="0 0 64 64" role="img" aria-label="VOLKSIA">
+  return `<svg class="mascot" viewBox="0 0 64 64" role="img" aria-label="SURI">
     <g class="m-hop">
       <rect x="18" y="52" width="10" height="7" rx="3.5" fill="#0B3C86"/>
       <rect x="36" y="52" width="10" height="7" rx="3.5" fill="#0B3C86"/>
@@ -1167,9 +1206,62 @@ $('.brand').addEventListener('click',()=>{
   setTimeout(()=>m.classList.remove('hop'),650);
 });
 
+
+/* ---------- SURI: favoritos, estado real y configuración ---------- */
+function isFav(id){return store.get('suri_favs',[]).includes(id)}
+function toggleFav(id){
+  let f=store.get('suri_favs',[]); f=f.includes(id)?f.filter(x=>x!==id):[id,...f]; store.set('suri_favs',f);
+  document.querySelectorAll(`[data-fav="${id}"]`).forEach(b=>b.setAttribute('aria-pressed',String(f.includes(id))));
+  renderFavs();
+}
+function renderFavs(){
+  const r=store.get('suri_favs',[]).map(id=>TOOLS.find(t=>t.id===id)).filter(Boolean);
+  $('#favs').hidden=!r.length;
+  $('#flist').innerHTML=r.map(t=>`<a class="rchip" href="#${t.id}" style="--t:${t.color}"><span class="ri">${ico(t.icon)}</span>${t.short}</a>`).join('');
+}
+document.addEventListener('click',e=>{const b=e.target.closest('[data-fav]'); if(!b) return; e.preventDefault(); e.stopPropagation(); toggleFav(b.dataset.fav)},true);
+
+function setStatus(id,s,txt,tip){
+  const el=document.querySelector(`[data-st="${id}"]`); if(!el) return;
+  el.dataset.s=s; el.querySelector('b').textContent=txt; el.title=tip||'';
+}
+async function checkTool(t){
+  if(location.protocol==='file:'){setStatus(t.id,'wait','No verificado','Abrí el sitio desde GitHub Pages o un servidor para verificar');return}
+  const ac=new AbortController(), to=setTimeout(()=>ac.abort(),9000);
+  try{
+    if(t.kind==='local'){
+      const r=await fetch(t.src,{method:'HEAD',cache:'no-store',signal:ac.signal});
+      r.ok?setStatus(t.id,'ok','Disponible','El archivo existe en el sitio'):setStatus(t.id,'bad','No encontrado','Falta el archivo '+t.src);
+    }else{
+      await fetch(t.src,{mode:'no-cors',cache:'no-store',signal:ac.signal});
+      setStatus(t.id,'ok','Responde','El servidor respondió. No se puede comprobar su contenido desde acá.');
+    }
+  }catch(e){setStatus(t.id,'bad','Sin respuesta','No se pudo contactar el destino. Probá abrirlo aparte.')}
+  finally{clearTimeout(to)}
+}
+function checkAll(){TOOLS.forEach(checkTool)}
+
+const setdlg=$('#setdlg');
+function openSettings(){ $('#aiUrl').value=AI_URL; $('#aiErr').textContent=''; if(!setdlg.open) setdlg.showModal(); }
+function closeSettings(){ if(setdlg.open) setdlg.close(); }
+setdlg.addEventListener('close',()=>{ if(location.hash==='#configuracion') history.replaceState(null,'', current?'#'+current.id:'#inicio'); });
+setdlg.addEventListener('click',e=>{if(e.target===setdlg) closeSettings()});
+$('#setClose').addEventListener('click',closeSettings);
+$('#aiSave').addEventListener('click',()=>{
+  const v=$('#aiUrl').value.trim(), err=$('#aiErr');
+  try{
+    const u=new URL(v);
+    if(u.protocol!=='https:') throw new Error('La dirección debe empezar con https://');
+    if(u.username||u.password) throw new Error('No incluyas usuario ni contraseña en la dirección.');
+    if(v.length>2048) throw new Error('La dirección es demasiado larga.');
+    store.set('suri_ai_url',u.href); location.reload();
+  }catch(e){ err.textContent = e instanceof TypeError ? 'Eso no parece una dirección válida.' : e.message; }
+});
+$('#aiClear').addEventListener('click',()=>{ try{localStorage.removeItem('suri_ai_url')}catch(e){} location.reload(); });
+
 /* ---------- Inicio ---------- */
 let booted=false;
-buildNav(); buildCards(); route(); booted=true;
+buildNav(); buildCards(); renderFavs(); route(); booted=true; checkAll();
 setTimeout(()=>app.classList.remove('intro'),1400);
 </script>
 </body>

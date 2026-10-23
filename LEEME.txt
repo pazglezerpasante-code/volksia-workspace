@@ -1,22 +1,21 @@
-VOLKSIA WORKSPACE — INSTRUCCIONES
+SURI TOOLS CENTER — INSTRUCCIONES
 
-1. Extraé TODO el ZIP en una carpeta de tu computadora.
-2. Entrá a la carpeta VOLKSIA_WORKSPACE.
-3. Abrí index.html con Chrome o Edge.
-4. Usá el menú de la izquierda para abrir las herramientas.
-5. Para configurar Mi IA: Configuración > pegá la URL > Guardar dirección.
+Publicación (GitHub Pages, sitio estático):
+1. Copiá el contenido de esta carpeta al repositorio (rama main), manteniendo la carpeta herramientas/.
+2. Hacé commit y push. Pages publica solo; no hay compilación.
+3. Probalo siempre desde la URL publicada o un servidor local (no desde file://), porque la
+   comprobación de disponibilidad necesita HTTP.
+
+Configurar la dirección de SURI (IA principal):
+Menú lateral > Configuración > pegar la URL https:// > Guardar dirección.
 
 Contenido:
-- index.html: panel principal
-- herramientas/control-asistencia.html
-- herramientas/turnero.html
-- herramientas/gestor-encuestas.html
-
-Gestor de Certificados:
-https://gestor-certificados-06pf.onrender.com/
+- index.html: centro de herramientas
+- herramientas/turnero.html, control-asistencia.html, gestor-encuestas.html
+- Gestor de Certificados: sitio externo (https://gestor-certificados-06pf.onrender.com/), se abre en pestaña nueva.
 
 Notas:
-- No muevas los archivos de la carpeta herramientas: el panel usa rutas relativas.
-- La URL de Mi IA se guarda en el navegador actual (localStorage).
-- Algunos sitios externos pueden bloquear que se muestren dentro de un iframe. Si sucede, usá el botón "Abrir en pestaña nueva".
-- Este paquete conserva los proyectos HTML originales recibidos. La integración visual no cambia el backend ni convierte los datos locales en una base de datos compartida.
+- No muevas los archivos de herramientas/: se usan rutas relativas.
+- Favoritas, recientes, tema y la URL de SURI se guardan en el navegador y dispositivo actuales (localStorage). No se sincronizan entre trabajadores.
+- Control de Asistencia y Gestor de Encuestas cargan librerías desde CDN (jsdelivr/cdnjs): necesitan internet.
+- Los identificadores técnicos antiguos (claves volksia_theme, volksia_recent, volksia_mini) se conservan para no perder preferencias guardadas.
