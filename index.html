@@ -377,6 +377,33 @@ body::after{content:"";position:fixed;inset:-20%;z-index:0;pointer-events:none;f
 .heat{filter:brightness(2.6) saturate(1.4) drop-shadow(0 0 20px rgba(36,229,255,.65))}
 .cfoot{flex-wrap:wrap;gap:10px}.cfoot .meta{flex-wrap:wrap;gap:6px}.chip{white-space:nowrap;font-size:10px}
 .hk{display:none}
+
+/* ======== SURI ULTRA v2: refinamiento ======== */
+.rl,.btn,.card h3,.chip,.card .open,.stagetitle h2,.rchip,.status,.recents h2,.crumbs .cur,.clock .date,.foot{text-transform:none!important}
+.rl{font-size:15px;font-weight:600;letter-spacing:.2px}.btn{font-size:14px;letter-spacing:.2px}
+.card h3{font:700 18px var(--display)!important;letter-spacing:.3px}.chip{font-size:12px;letter-spacing:.3px}
+.card .open{font-size:14px;letter-spacing:.3px}.recents h2{font:600 14px var(--text);letter-spacing:.4px;color:var(--ink-2)}
+.hello p::before{content:none}.hello h1{text-transform:none!important;font-size:clamp(32px,4.6vw,60px)!important;letter-spacing:.5px}
+.clock .time{font-size:clamp(40px,5vw,64px)!important}
+.bento{display:grid!important;grid-template-columns:repeat(auto-fill,minmax(min(100%,290px),1fr))!important;grid-auto-rows:auto!important;gap:18px!important}
+.bento .card{grid-column:auto!important;grid-row:auto!important;min-height:0!important}
+.card .art{height:132px!important;min-height:0!important}.card .art svg{height:100%;width:auto;max-width:100%}
+.card::after{content:none}
+.card::before{background:radial-gradient(260px circle at var(--mx,50%) var(--my,0%),rgba(36,229,255,.16),transparent 70%)!important;opacity:0;transition:opacity .25s}
+.card:hover::before{opacity:1}.card:hover{transform:none!important}
+.kpis{display:flex;gap:12px;flex-wrap:wrap;margin:0 0 18px}
+.kpi{display:flex;align-items:baseline;gap:8px;padding:10px 16px;border-radius:14px;background:rgba(16,36,65,.6);border:1px solid rgba(36,229,255,.22)}
+.kpi b{font:700 22px var(--display);color:var(--cyan)}.kpi span{color:var(--ink-2);font-size:14px}
+.cats{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 18px}
+.cats button{min-height:40px;padding:0 16px;border-radius:999px;border:1px solid rgba(36,229,255,.25);background:rgba(16,36,65,.5);color:var(--ink-2);font-weight:600}
+.cats button[aria-pressed="true"]{background:linear-gradient(90deg,#0866FF,#24E5FF);color:#02101f;border-color:transparent}
+.cats button:hover{border-color:#24E5FF}
+.hero{margin-bottom:14px}
+
+.heat{filter:brightness(1.7) drop-shadow(0 0 10px rgba(36,229,255,.5))!important}
+.card .art{height:132px!important;overflow:hidden;display:grid!important;place-items:center}
+.card .art svg{max-height:132px!important;height:auto!important;width:auto!important;max-width:88%!important}
+.rl{font-size:14px!important}
 </style>
 </head>
 <body>
@@ -466,6 +493,7 @@ body::after{content:"";position:fixed;inset:-20%;z-index:0;pointer-events:none;f
             <div id="rlist" style="display:contents"></div>
           </div>
 
+          <div class="kpis" id="kpis"></div><div class="cats" id="cats" role="group" aria-label="Filtrar por categoría"></div>
           <div class="recents" id="favs" hidden style="--i:2"><h2>Favoritas</h2><div id="flist" style="display:contents"></div></div>
 
           <div class="bento" id="bento"></div>
@@ -607,12 +635,13 @@ tick(); setInterval(()=>{ if(!document.hidden) tick(); },1000);
 document.addEventListener('visibilitychange',()=>{ if(!document.hidden) tick(); });
 
 /* ---------- Tarjetas de inicio ---------- */
+const CAT={turnero:'Operaciones',asistencia:'Personal',encuestas:'Datos',certificados:'Documentos',ia:'Inteligencia artificial'};
 function buildCards(){
   $('#bento').innerHTML = TOOLS.map((t,i)=>`
-    <a class="card ${t.size}" href="#${t.id}" style="--t:${t.color};--i:${i+2}" data-id="${t.id}">
+    <a class="card ${t.size}" data-cat="${CAT[t.id]||'Otras'}" href="#${t.id}" style="--t:${t.color};--i:${i+2}" data-id="${t.id}">
       <div class="art">${ART[t.id]}</div><button type="button" class="fav" data-fav="${t.id}" aria-pressed="${isFav(t.id)}" aria-label="Marcar ${t.short} como favorita"><svg class="i" viewBox="0 0 24 24"><path d="M12 3.5l2.6 5.4 5.9.8-4.3 4.1 1 5.9L12 16.9 6.8 19.7l1-5.9L3.5 9.7l5.9-.8z"/></svg></button>
       <div class="cbody"><h3>${t.name}</h3><p>${t.desc}</p></div>
-      <div class="cfoot"><span class="meta"><span class="chip">${t.kind==='web'?'Sistema web':'Herramienta interna'}</span><span class="chip st" data-st="${t.id}" data-s="wait"><i class="sd"></i><b>Verificando</b></span><kbd class="hk" aria-hidden="true">${i+1}</kbd></span><span class="open">Abrir ${ico('i-arrow')}</span></div>
+      <div class="cfoot"><span class="meta"><span class="chip">${CAT[t.id]||'Otras'}</span><span class="chip">${t.kind==='web'?'Web':'Interna'}</span><span class="chip st" data-st="${t.id}" data-s="wait"><i class="sd"></i><b>Verificando</b></span><kbd class="hk" aria-hidden="true">${i+1}</kbd></span><span class="open">Abrir ${ico('i-arrow')}</span></div>
     </a>`).join('');
 }
 
@@ -1266,7 +1295,7 @@ function isFav(id){return store.get('suri_favs',[]).includes(id)}
 function toggleFav(id){
   let f=store.get('suri_favs',[]); f=f.includes(id)?f.filter(x=>x!==id):[id,...f]; store.set('suri_favs',f);
   document.querySelectorAll(`[data-fav="${id}"]`).forEach(b=>b.setAttribute('aria-pressed',String(f.includes(id))));
-  renderFavs();
+  renderFavs(); updKpis();
 }
 function renderFavs(){
   const r=store.get('suri_favs',[]).map(id=>TOOLS.find(t=>t.id===id)).filter(Boolean);
@@ -1277,7 +1306,7 @@ document.addEventListener('click',e=>{const b=e.target.closest('[data-fav]'); if
 
 function setStatus(id,s,txt,tip){
   const el=document.querySelector(`[data-st="${id}"]`); if(!el) return;
-  el.dataset.s=s; el.querySelector('b').textContent=txt; el.title=tip||'';
+  el.dataset.s=s; el.querySelector('b').textContent=txt; el.title=tip||''; updKpis();
 }
 async function checkTool(t){
   if(location.protocol==='file:'){setStatus(t.id,'wait','No verificado','Abrí el sitio desde GitHub Pages o un servidor para verificar');return}
@@ -1295,9 +1324,26 @@ async function checkTool(t){
 }
 function checkAll(){TOOLS.forEach(checkTool)}
 
+
+/* ---------- panel de estado y categorías ---------- */
+function updKpis(){
+  const st=[...document.querySelectorAll('[data-st]')], ok=st.filter(x=>x.dataset.s==='ok').length;
+  $('#kpis').innerHTML=`<div class="kpi"><b>${TOOLS.length}</b><span>herramientas</span></div><div class="kpi"><b>${ok}</b><span>responden ahora</span></div><div class="kpi"><b>${store.get('suri_favs',[]).length}</b><span>favoritas</span></div>`;
+}
+function buildCats(){
+  const cats=['Todas',...new Set(TOOLS.map(t=>CAT[t.id]||'Otras'))];
+  $('#cats').hidden=cats.length<3;
+  $('#cats').innerHTML=cats.map((c,i)=>`<button type="button" aria-pressed="${i===0}" data-c="${c}">${c}</button>`).join('');
+}
+$('#cats').addEventListener('click',e=>{
+  const b=e.target.closest('[data-c]'); if(!b) return;
+  document.querySelectorAll('#cats button').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));
+  document.querySelectorAll('#bento .card').forEach(c=>{c.hidden=!(b.dataset.c==='Todas'||c.dataset.cat===b.dataset.c)});
+});
+$('#bento').addEventListener('pointermove',e=>{const c=e.target.closest('.card'); if(!c) return; const r=c.getBoundingClientRect(); c.style.setProperty('--mx',(e.clientX-r.left)+'px'); c.style.setProperty('--my',(e.clientY-r.top)+'px')});
 /* ---------- Inicio ---------- */
 let booted=false;
-buildNav(); buildCards(); renderFavs(); route(); booted=true; checkAll();
+buildNav(); buildCards(); renderFavs(); buildCats(); updKpis(); route(); booted=true; checkAll();
 setTimeout(()=>app.classList.remove('intro'),1400);
 </script>
 </body>
