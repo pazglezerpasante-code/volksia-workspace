@@ -426,6 +426,11 @@ body::after{content:"";position:fixed;inset:-20%;z-index:0;pointer-events:none;f
 @media (prefers-reduced-motion:reduce){.card::after,.card .art::after,.hello h1{animation:none}}
 .bento{grid-template-columns:repeat(auto-fill,minmax(min(100%,235px),1fr))!important}
 .heat{filter:brightness(2.4) contrast(1.1) drop-shadow(0 0 12px rgba(36,229,255,.6))!important}
+.card .cfoot{margin-top:auto;flex-wrap:nowrap!important;justify-content:space-between;align-items:center}
+.card .cfoot .meta{flex-wrap:nowrap!important;min-width:0}.card .cfoot .chip{overflow:hidden;text-overflow:ellipsis;max-width:100%}
+.card .open{white-space:nowrap;flex:none}
+.card h3{min-height:2.5em;display:flex;align-items:flex-end}
+.card .cbody{padding-bottom:14px}
 </style>
 </head>
 <body>
@@ -662,7 +667,7 @@ function buildCards(){
     <a class="card ${t.size}" data-cat="${CAT[t.id]||'Otras'}" href="#${t.id}" style="--t:${t.color};--i:${i+2}" data-id="${t.id}">
       <div class="art">${ART[t.id]}</div><button type="button" class="fav" data-fav="${t.id}" aria-pressed="${isFav(t.id)}" aria-label="Marcar ${t.short} como favorita"><svg class="i" viewBox="0 0 24 24"><path d="M12 3.5l2.6 5.4 5.9.8-4.3 4.1 1 5.9L12 16.9 6.8 19.7l1-5.9L3.5 9.7l5.9-.8z"/></svg></button>
       <div class="cbody"><h3>${t.name}</h3><p>${t.desc}</p></div>
-      <div class="cfoot"><span class="meta"><span class="chip">${t.kind==='web'?'Sistema web':'Herramienta interna'}</span><kbd class="hk" aria-hidden="true">${i+1}</kbd></span><span class="open">Abrir ${ico('i-arrow')}</span></div>
+      <div class="cfoot"><span class="meta"><span class="chip">${t.kind==='web'?'Web':'Interna'}</span><kbd class="hk" aria-hidden="true">${i+1}</kbd></span><span class="open">Abrir ${ico('i-arrow')}</span></div>
     </a>`).join('');
 }
 
