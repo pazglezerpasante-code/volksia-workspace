@@ -405,6 +405,27 @@ body::after{content:"";position:fixed;inset:-20%;z-index:0;pointer-events:none;f
 .card .art svg{max-height:132px!important;height:auto!important;width:auto!important;max-width:88%!important}
 .rl{font-size:14px!important}
 .card .art{flex:none!important}.card.c-lg,.card.c-md,.card.c-wide{padding:22px!important;border-radius:22px!important;grid-row:auto!important}.card .cbody{flex:1}
+
+/* ======== SURI ULTRA v3 ======== */
+@property --ang{syntax:"<angle>";initial-value:0deg;inherits:false}
+.card{--ang:0deg}
+.card::after{content:""!important;position:absolute;inset:0;border-radius:inherit;padding:1.5px;pointer-events:none;z-index:2;opacity:0;transition:opacity .3s;
+  background:conic-gradient(from var(--ang),transparent 0 55%,var(--t,#24E5FF) 75%,#24E5FF 85%,transparent 95%);
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;
+  width:auto;height:auto;left:0;top:0;border:0;animation:spin 3.5s linear infinite}
+.card:hover::after,.card:focus-visible::after{opacity:1}
+@keyframes spin{to{--ang:360deg}}
+.card .art{height:168px!important}.card .art svg{max-height:168px!important}
+.card .art::after{content:"";position:absolute;left:0;right:0;height:40%;top:-40%;background:linear-gradient(180deg,transparent,rgba(36,229,255,.14),transparent);animation:scan 5s ease-in-out infinite;pointer-events:none}
+.card .art{position:relative}
+@keyframes scan{0%,100%{top:-40%}50%{top:100%}}
+.hello h1{background-size:200% 100%;animation:sheen 9s ease-in-out infinite alternate}
+@keyframes sheen{to{background-position:100% 0}}
+.rl[aria-current="page"]::before{box-shadow:0 0 14px var(--t,#24E5FF)}
+.palbtn kbd{background:rgba(36,229,255,.12);border-color:rgba(36,229,255,.4);color:var(--cyan)}
+@media (prefers-reduced-motion:reduce){.card::after,.card .art::after,.hello h1{animation:none}}
+.bento{grid-template-columns:repeat(auto-fill,minmax(min(100%,235px),1fr))!important}
+.heat{filter:brightness(2.4) contrast(1.1) drop-shadow(0 0 12px rgba(36,229,255,.6))!important}
 </style>
 </head>
 <body>
@@ -494,7 +515,6 @@ body::after{content:"";position:fixed;inset:-20%;z-index:0;pointer-events:none;f
             <div id="rlist" style="display:contents"></div>
           </div>
 
-          <div class="kpis" id="kpis"></div><div class="cats" id="cats" role="group" aria-label="Filtrar por categoría"></div>
           <div class="recents" id="favs" hidden style="--i:2"><h2>Favoritas</h2><div id="flist" style="display:contents"></div></div>
 
           <div class="bento" id="bento"></div>
@@ -642,7 +662,7 @@ function buildCards(){
     <a class="card ${t.size}" data-cat="${CAT[t.id]||'Otras'}" href="#${t.id}" style="--t:${t.color};--i:${i+2}" data-id="${t.id}">
       <div class="art">${ART[t.id]}</div><button type="button" class="fav" data-fav="${t.id}" aria-pressed="${isFav(t.id)}" aria-label="Marcar ${t.short} como favorita"><svg class="i" viewBox="0 0 24 24"><path d="M12 3.5l2.6 5.4 5.9.8-4.3 4.1 1 5.9L12 16.9 6.8 19.7l1-5.9L3.5 9.7l5.9-.8z"/></svg></button>
       <div class="cbody"><h3>${t.name}</h3><p>${t.desc}</p></div>
-      <div class="cfoot"><span class="meta"><span class="chip">${CAT[t.id]||'Otras'}</span><span class="chip">${t.kind==='web'?'Web':'Interna'}</span><span class="chip st" data-st="${t.id}" data-s="wait"><i class="sd"></i><b>Verificando</b></span><kbd class="hk" aria-hidden="true">${i+1}</kbd></span><span class="open">Abrir ${ico('i-arrow')}</span></div>
+      <div class="cfoot"><span class="meta"><span class="chip">${t.kind==='web'?'Sistema web':'Herramienta interna'}</span><kbd class="hk" aria-hidden="true">${i+1}</kbd></span><span class="open">Abrir ${ico('i-arrow')}</span></div>
     </a>`).join('');
 }
 
@@ -1296,7 +1316,7 @@ function isFav(id){return store.get('suri_favs',[]).includes(id)}
 function toggleFav(id){
   let f=store.get('suri_favs',[]); f=f.includes(id)?f.filter(x=>x!==id):[id,...f]; store.set('suri_favs',f);
   document.querySelectorAll(`[data-fav="${id}"]`).forEach(b=>b.setAttribute('aria-pressed',String(f.includes(id))));
-  renderFavs(); updKpis();
+  renderFavs();
 }
 function renderFavs(){
   const r=store.get('suri_favs',[]).map(id=>TOOLS.find(t=>t.id===id)).filter(Boolean);
@@ -1305,46 +1325,13 @@ function renderFavs(){
 }
 document.addEventListener('click',e=>{const b=e.target.closest('[data-fav]'); if(!b) return; e.preventDefault(); e.stopPropagation(); toggleFav(b.dataset.fav)},true);
 
-function setStatus(id,s,txt,tip){
-  const el=document.querySelector(`[data-st="${id}"]`); if(!el) return;
-  el.dataset.s=s; el.querySelector('b').textContent=txt; el.title=tip||''; updKpis();
-}
-async function checkTool(t){
-  if(location.protocol==='file:'){setStatus(t.id,'wait','No verificado','Abrí el sitio desde GitHub Pages o un servidor para verificar');return}
-  const ac=new AbortController(), to=setTimeout(()=>ac.abort(),9000);
-  try{
-    if(t.kind==='local'){
-      const r=await fetch(t.src,{method:'HEAD',cache:'no-store',signal:ac.signal});
-      r.ok?setStatus(t.id,'ok','Disponible','El archivo existe en el sitio'):setStatus(t.id,'bad','No encontrado','Falta el archivo '+t.src);
-    }else{
-      await fetch(t.src,{mode:'no-cors',cache:'no-store',signal:ac.signal});
-      setStatus(t.id,'ok','Responde','El servidor respondió. No se puede comprobar su contenido desde acá.');
-    }
-  }catch(e){setStatus(t.id,'bad','Sin respuesta','No se pudo contactar el destino. Probá abrirlo aparte.')}
-  finally{clearTimeout(to)}
-}
-function checkAll(){TOOLS.forEach(checkTool)}
 
 
-/* ---------- panel de estado y categorías ---------- */
-function updKpis(){
-  const st=[...document.querySelectorAll('[data-st]')], ok=st.filter(x=>x.dataset.s==='ok').length;
-  $('#kpis').innerHTML=`<div class="kpi"><b>${TOOLS.length}</b><span>herramientas</span></div><div class="kpi"><b>${ok}</b><span>responden ahora</span></div><div class="kpi"><b>${store.get('suri_favs',[]).length}</b><span>favoritas</span></div>`;
-}
-function buildCats(){
-  const cats=['Todas',...new Set(TOOLS.map(t=>CAT[t.id]||'Otras'))];
-  $('#cats').hidden=cats.length<3;
-  $('#cats').innerHTML=cats.map((c,i)=>`<button type="button" aria-pressed="${i===0}" data-c="${c}">${c}</button>`).join('');
-}
-$('#cats').addEventListener('click',e=>{
-  const b=e.target.closest('[data-c]'); if(!b) return;
-  document.querySelectorAll('#cats button').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));
-  document.querySelectorAll('#bento .card').forEach(c=>{c.hidden=!(b.dataset.c==='Todas'||c.dataset.cat===b.dataset.c)});
-});
+
 $('#bento').addEventListener('pointermove',e=>{const c=e.target.closest('.card'); if(!c) return; const r=c.getBoundingClientRect(); c.style.setProperty('--mx',(e.clientX-r.left)+'px'); c.style.setProperty('--my',(e.clientY-r.top)+'px')});
 /* ---------- Inicio ---------- */
 let booted=false;
-buildNav(); buildCards(); renderFavs(); buildCats(); updKpis(); route(); booted=true; checkAll();
+buildNav(); buildCards(); renderFavs(); route(); booted=true;
 setTimeout(()=>app.classList.remove('intro'),1400);
 </script>
 </body>
