@@ -3,31 +3,31 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#EEF1F5">
-<meta name="description" content="VOLKSIA Workspace: todas las herramientas de trabajo en un solo lugar.">
+<meta name="theme-color" content="#030711">
+<meta name="description" content="SURI Tools Center: todas las herramientas de trabajo en un solo lugar.">
 <meta name="robots" content="noindex,nofollow">
 <meta name="color-scheme" content="light dark">
 <meta property="og:type" content="website">
-<meta property="og:title" content="VOLKSIA Workspace">
+<meta property="og:title" content="SURI Tools Center">
 <meta property="og:description" content="Turnero, asistencia, encuestas y certificados en un solo panel de trabajo.">
 <meta name="twitter:card" content="summary">
-<title>VOLKSIA Workspace</title>
+<title>SURI Tools Center</title>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect x='8' y='14' width='48' height='40' rx='15' fill='%23001E50'/%3E%3Cpath d='M32 14V9' stroke='%2300A8F0' stroke-width='3' stroke-linecap='round'/%3E%3Ccircle cx='32' cy='7' r='4.2' fill='%2300A8F0'/%3E%3Ccircle cx='23.500' cy='32' r='8.500' fill='%23fff'/%3E%3Ccircle cx='40.500' cy='32' r='8.500' fill='%23fff'/%3E%3Ccircle cx='24.500' cy='33' r='4.200' fill='%230A1A2F'/%3E%3Ccircle cx='41.500' cy='33' r='4.200' fill='%230A1A2F'/%3E%3Cpath d='M26 46q6 5 12 0' fill='none' stroke='%2300A8F0' stroke-width='2.600' stroke-linecap='round'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Instrument+Sans:wght@400..700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500..800&family=Rajdhani:wght@500..700&family=Instrument+Sans:wght@400..700&display=swap" rel="stylesheet">
 <style>
 :root{
   --bg:#EEF1F5;--surface:#FFFFFF;--surface-2:#F5F7FA;--ink:#0A1A2F;--ink-2:#44546B;--ink-3:#7686A0;
   --line:#DCE3EC;--line-2:#C6D0DD;--brand:#001E50;--sky:#009FE3;--ok:#16A36A;--bad:#D6453D;
   --rail:260px;--ring:#009FE3;
-  --display:"Bricolage Grotesque","Instrument Sans",ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+  --display:"Orbitron","Bricolage Grotesque","Instrument Sans",ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
   --text:"Instrument Sans",ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
   color-scheme:light;
 }
 html[data-theme="dark"]{
-  --bg:#050C18;--surface:#0B1729;--surface-2:#0F2037;--ink:#EAF1FA;--ink-2:#9BABC3;--ink-3:#6B7D99;
-  --line:#1A2C47;--line-2:#27406A;--brand:#7CC4FF;--sky:#3DB8FF;--ok:#2DD18E;--bad:#FF6F66;--ring:#3DB8FF;
+  --bg:#030711;--deep:#061326;--surface:#0A1930;--surface-2:#102441;--ink:#F4F8FF;--ink-2:#91A7C4;--ink-3:#6C83A3;
+  --line:#16315A;--line-2:#1F4A86;--brand:#24E5FF;--sky:#168CFF;--electric:#0866FF;--cyan:#24E5FF;--ok:#2DD18E;--bad:#FF6F66;--ring:#24E5FF;
   color-scheme:dark;
 }
 *{box-sizing:border-box}
@@ -287,6 +287,157 @@ dialog.pal::backdrop{background:rgba(3,10,22,.55);backdrop-filter:blur(4px)}
   .c-lg .cbody h3{font-size:26px}
 }
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+
+/* ---------- SURI: capa futurista (solo tema oscuro) ---------- */
+html[data-theme="dark"] body{background:radial-gradient(900px 520px at 85% -10%,rgba(8,102,255,.22),transparent 60%),radial-gradient(700px 480px at -5% 105%,rgba(36,229,255,.10),transparent 60%),var(--bg)}
+html[data-theme="dark"] .rail{background:linear-gradient(180deg,rgba(10,25,48,.92),rgba(6,19,38,.92));backdrop-filter:blur(14px);border-right-color:rgba(36,229,255,.14)}
+html[data-theme="dark"] .card{background:linear-gradient(160deg,var(--surface-2),var(--surface));border-color:rgba(22,140,255,.28);box-shadow:0 0 0 1px rgba(36,229,255,.04) inset,0 14px 40px -18px rgba(8,102,255,.55)}
+html[data-theme="dark"] .card:hover{border-color:var(--cyan);box-shadow:0 0 28px -6px rgba(36,229,255,.45)}
+html[data-theme="dark"] .topbar{background:rgba(3,7,17,.6);backdrop-filter:blur(12px)}
+.card{position:relative}
+.fav{position:absolute;top:12px;right:12px;z-index:3;width:38px;height:38px;display:grid;place-items:center;border-radius:12px;border:1px solid var(--line-2);background:color-mix(in srgb,var(--surface) 80%,transparent);color:var(--ink-3);transition:color .15s,transform .15s,border-color .15s}
+.fav:hover{color:var(--cyan);border-color:var(--cyan)}
+.fav[aria-pressed="true"]{color:#FFC93C;border-color:#FFC93C}.fav[aria-pressed="true"] svg{fill:currentColor}
+.fav:active{transform:scale(.92)}
+.chip.st{display:inline-flex;align-items:center;gap:6px}
+.chip.st .sd{width:8px;height:8px;border-radius:50%;background:var(--ink-3)}
+.chip.st[data-s="ok"] .sd{background:var(--ok);box-shadow:0 0 8px var(--ok)}
+.chip.st[data-s="bad"] .sd{background:var(--bad)}
+.chip.st[data-s="wait"] .sd{animation:stp 1s infinite alternate}
+@keyframes stp{to{opacity:.25}}
+.setdlg{border:1px solid var(--line-2);border-radius:20px;background:var(--surface);color:var(--ink);width:min(560px,calc(100vw - 24px));max-height:calc(100dvh - 24px);padding:0;box-shadow:0 30px 80px -20px rgba(8,102,255,.5)}
+.setdlg::backdrop{background:rgba(3,7,17,.7);backdrop-filter:blur(4px)}
+.setin{padding:22px;display:grid;gap:14px;overflow:auto;max-height:calc(100dvh - 24px)}
+.setin h2{margin:0;font:700 22px var(--display)}.setin p,.setin small{margin:0;color:var(--ink-2)}
+.setin input{width:100%;padding:12px 14px;min-height:44px;border-radius:12px;border:1px solid var(--line-2);background:var(--bg)}
+.setin .row{display:flex;gap:10px;flex-wrap:wrap}.setin .err{color:var(--bad);min-height:1.2em;font-size:13px}
+@media (prefers-reduced-motion:reduce){.chip.st .sd{animation:none}}
+
+/* ======== SURI ULTRA: visual futurista ======== */
+html,html[data-theme]{--hud:rgba(36,229,255,.55)}
+.themebtn{display:none!important}
+body{background:#030711!important;font-family:"Rajdhani","Instrument Sans",system-ui,sans-serif;font-size:16px;letter-spacing:.2px}
+body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:linear-gradient(rgba(36,229,255,.05) 1px,transparent 1px) 0 0/44px 44px,linear-gradient(90deg,rgba(36,229,255,.05) 1px,transparent 1px) 0 0/44px 44px;
+  mask-image:radial-gradient(ellipse 80% 70% at 60% 30%,#000 20%,transparent 80%)}
+body::after{content:"";position:fixed;inset:-20%;z-index:0;pointer-events:none;filter:blur(60px);opacity:.9;
+  background:radial-gradient(40% 35% at 78% 8%,rgba(8,102,255,.55),transparent 70%),radial-gradient(35% 30% at 5% 95%,rgba(36,229,255,.28),transparent 70%),radial-gradient(30% 30% at 50% 60%,rgba(120,60,255,.14),transparent 70%);
+  animation:aur 16s ease-in-out infinite alternate}
+@keyframes aur{to{transform:translate3d(3%,-2%,0) scale(1.08)}}
+.app{position:relative;z-index:1}
+.rail{background:linear-gradient(180deg,rgba(10,25,48,.78),rgba(3,7,17,.85))!important;backdrop-filter:blur(18px);border-right:1px solid rgba(36,229,255,.22)!important;box-shadow:12px 0 60px -30px rgba(8,102,255,.7)}
+.brand b{font:800 22px var(--display);letter-spacing:4px;background:linear-gradient(90deg,#fff,#24E5FF);-webkit-background-clip:text;background-clip:text;color:transparent}
+.brand small{color:var(--cyan);letter-spacing:3px;text-transform:uppercase;font-size:10px}
+.mascot-slot{filter:drop-shadow(0 0 14px rgba(36,229,255,.7))}
+.rl{border:1px solid transparent;font-weight:600;letter-spacing:.5px;text-transform:uppercase;font-size:13px}
+.rl:hover{background:rgba(36,229,255,.07)!important;border-color:rgba(36,229,255,.3);transform:translateX(3px)}
+.rl[aria-current="page"]{background:linear-gradient(90deg,color-mix(in srgb,var(--t,#168CFF) 28%,transparent),transparent)!important;border-color:color-mix(in srgb,var(--t,#24E5FF) 50%,transparent);box-shadow:0 0 22px -8px var(--t,#24E5FF)}
+.rl[aria-current="page"] svg.i{filter:drop-shadow(0 0 6px var(--t,#24E5FF))}
+.status{border:1px solid rgba(45,209,142,.35);background:rgba(45,209,142,.08)!important;text-transform:uppercase;letter-spacing:1.5px;font-size:11px}
+.topbar{background:rgba(3,7,17,.55)!important;backdrop-filter:blur(14px);border-bottom:1px solid rgba(36,229,255,.18)!important}
+.palbtn{background:rgba(16,36,65,.6)!important;border:1px solid rgba(36,229,255,.35)!important;box-shadow:0 0 24px -10px #24E5FF;color:var(--ink-2)}
+.palbtn:hover{border-color:#24E5FF!important;box-shadow:0 0 30px -4px #24E5FF}
+.crumbs .cur{text-transform:uppercase;letter-spacing:3px;color:var(--cyan);font:600 12px var(--display)}
+.hello h1{font:800 clamp(34px,5.5vw,76px)/1.02 var(--display)!important;letter-spacing:2px;text-transform:uppercase;background:linear-gradient(100deg,#fff 20%,#24E5FF 60%,#0866FF);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 0 22px rgba(36,229,255,.35))}
+.hello p{color:var(--ink-2);font-size:18px}
+.hello p::before{content:"// ";color:var(--cyan)}
+.clock .time{font-family:var(--display)!important;color:#24E5FF!important;text-shadow:0 0 28px rgba(36,229,255,.7);letter-spacing:2px}
+.clock .date{text-transform:uppercase;letter-spacing:3px;color:var(--ink-2)!important;font-size:13px}
+.recents h2{font:700 12px var(--display);letter-spacing:3px;text-transform:uppercase;color:var(--cyan)}
+.rchip{background:rgba(16,36,65,.65)!important;border:1px solid rgba(36,229,255,.3)!important;border-radius:14px;box-shadow:0 0 18px -10px #24E5FF}
+.rchip:hover{border-color:#24E5FF!important;box-shadow:0 0 26px -4px #24E5FF}
+.card{background:linear-gradient(155deg,rgba(16,36,65,.82),rgba(6,19,38,.9))!important;border:1px solid rgba(36,229,255,.28)!important;border-radius:22px!important;overflow:hidden;backdrop-filter:blur(10px);box-shadow:0 0 0 1px rgba(8,102,255,.12) inset,0 24px 60px -28px rgba(8,102,255,.8)!important;transition:transform .25s,box-shadow .25s,border-color .25s}
+.card::before{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;border-radius:inherit;background:linear-gradient(120deg,transparent 40%,rgba(36,229,255,.16) 50%,transparent 60%) -150% 0/250% 100% no-repeat;transition:background-position .9s}
+.card:hover{transform:translateY(-6px);border-color:#24E5FF!important;box-shadow:0 0 40px -6px color-mix(in srgb,var(--t,#24E5FF) 70%,#24E5FF),0 24px 60px -24px rgba(8,102,255,.9)!important}
+.card:hover::before{background-position:150% 0}
+.card::after{content:"";position:absolute;left:14px;top:14px;width:18px;height:18px;border-left:2px solid var(--hud);border-top:2px solid var(--hud);border-radius:6px 0 0 0;pointer-events:none;z-index:2}
+.card .art{background:radial-gradient(circle at 50% 40%,color-mix(in srgb,var(--t,#168CFF) 30%,transparent),transparent 70%)!important}
+.card .art svg *{stroke:var(--t,#24E5FF)}
+.card .art .a-solid,.card .art .a-fill{fill:var(--t,#24E5FF)!important;filter:drop-shadow(0 0 8px var(--t,#24E5FF))}
+.card .art svg{filter:drop-shadow(0 0 10px color-mix(in srgb,var(--t,#24E5FF) 60%,transparent))}
+.card h3{font:700 19px var(--display)!important;letter-spacing:1px;text-transform:uppercase}
+.card p{color:var(--ink-2)}
+.chip{background:rgba(36,229,255,.08)!important;border:1px solid rgba(36,229,255,.28)!important;color:var(--cyan)!important;text-transform:uppercase;letter-spacing:1.2px;font-size:11px;font-weight:700}
+.card .open{color:#fff!important;font-weight:700;text-transform:uppercase;letter-spacing:2px;font-size:13px;text-shadow:0 0 14px var(--t,#24E5FF)}
+.fav{background:rgba(3,7,17,.6)!important;border-color:rgba(36,229,255,.4)!important}
+.stagebar{background:rgba(6,19,38,.75)!important;backdrop-filter:blur(14px);border-bottom:1px solid rgba(36,229,255,.25)!important}
+.stagetitle h2{font:700 16px var(--display);letter-spacing:2px;text-transform:uppercase}
+.btn{background:rgba(16,36,65,.7)!important;border:1px solid rgba(36,229,255,.35)!important;color:var(--ink)!important;border-radius:12px;font-weight:600;text-transform:uppercase;letter-spacing:1px;font-size:12px;min-height:40px}
+.btn:hover{border-color:#24E5FF!important;box-shadow:0 0 22px -4px #24E5FF}
+.btn.primary{background:linear-gradient(90deg,#0866FF,#24E5FF)!important;border-color:transparent!important;color:#02101f!important;box-shadow:0 0 28px -6px #24E5FF}
+.frame{background:#030711}
+.pal{background:rgba(6,19,38,.92)!important;border:1px solid rgba(36,229,255,.4)!important;box-shadow:0 0 70px -10px rgba(8,102,255,.8)!important;backdrop-filter:blur(20px)}
+.pal::backdrop{background:rgba(3,7,17,.75);backdrop-filter:blur(5px)}
+.pli.sel{background:linear-gradient(90deg,rgba(36,229,255,.18),transparent)!important}
+.foot{color:var(--ink-3);text-transform:uppercase;letter-spacing:2px;font-size:11px}
+@media (max-width:760px){body::before{background-size:32px 32px}.hello h1{font-size:clamp(30px,10vw,52px)!important}.card:hover{transform:none}}
+@media (prefers-reduced-motion:reduce){body::after{animation:none}.card,.rl{transition:none}}
+
+.rl{font-size:11.5px;letter-spacing:.3px;gap:10px;padding-inline:10px}.rl .lbl{overflow:hidden;text-overflow:ellipsis}
+.heat{filter:brightness(2.6) saturate(1.4) drop-shadow(0 0 20px rgba(36,229,255,.65))}
+.cfoot{flex-wrap:wrap;gap:10px}.cfoot .meta{flex-wrap:wrap;gap:6px}.chip{white-space:nowrap;font-size:10px}
+.hk{display:none}
+
+/* ======== SURI ULTRA v2: refinamiento ======== */
+.rl,.btn,.card h3,.chip,.card .open,.stagetitle h2,.rchip,.status,.recents h2,.crumbs .cur,.clock .date,.foot{text-transform:none!important}
+.rl{font-size:15px;font-weight:600;letter-spacing:.2px}.btn{font-size:14px;letter-spacing:.2px}
+.card h3{font:700 18px var(--display)!important;letter-spacing:.3px}.chip{font-size:12px;letter-spacing:.3px}
+.card .open{font-size:14px;letter-spacing:.3px}.recents h2{font:600 14px var(--text);letter-spacing:.4px;color:var(--ink-2)}
+.hello p::before{content:none}.hello h1{text-transform:none!important;font-size:clamp(32px,4.6vw,60px)!important;letter-spacing:.5px}
+.clock .time{font-size:clamp(40px,5vw,64px)!important}
+.bento{display:grid!important;grid-template-columns:repeat(auto-fill,minmax(min(100%,290px),1fr))!important;grid-auto-rows:auto!important;gap:18px!important}
+.bento .card{grid-column:auto!important;grid-row:auto!important;min-height:0!important}
+.card .art{height:132px!important;min-height:0!important}.card .art svg{height:100%;width:auto;max-width:100%}
+.card::after{content:none}
+.card::before{background:radial-gradient(260px circle at var(--mx,50%) var(--my,0%),rgba(36,229,255,.16),transparent 70%)!important;opacity:0;transition:opacity .25s}
+.card:hover::before{opacity:1}.card:hover{transform:none!important}
+.kpis{display:flex;gap:12px;flex-wrap:wrap;margin:0 0 18px}
+.kpi{display:flex;align-items:baseline;gap:8px;padding:10px 16px;border-radius:14px;background:rgba(16,36,65,.6);border:1px solid rgba(36,229,255,.22)}
+.kpi b{font:700 22px var(--display);color:var(--cyan)}.kpi span{color:var(--ink-2);font-size:14px}
+.cats{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 18px}
+.cats button{min-height:40px;padding:0 16px;border-radius:999px;border:1px solid rgba(36,229,255,.25);background:rgba(16,36,65,.5);color:var(--ink-2);font-weight:600}
+.cats button[aria-pressed="true"]{background:linear-gradient(90deg,#0866FF,#24E5FF);color:#02101f;border-color:transparent}
+.cats button:hover{border-color:#24E5FF}
+.hero{margin-bottom:14px}
+
+.heat{filter:brightness(1.7) drop-shadow(0 0 10px rgba(36,229,255,.5))!important}
+.card .art{height:132px!important;overflow:hidden;display:grid!important;place-items:center}
+.card .art svg{max-height:132px!important;height:auto!important;width:auto!important;max-width:88%!important}
+.rl{font-size:14px!important}
+.card .art{flex:none!important}.card.c-lg,.card.c-md,.card.c-wide{padding:22px!important;border-radius:22px!important;grid-row:auto!important}.card .cbody{flex:1}
+
+/* ======== SURI ULTRA v3 ======== */
+@property --ang{syntax:"<angle>";initial-value:0deg;inherits:false}
+.card{--ang:0deg}
+.card::after{content:""!important;position:absolute;inset:0;border-radius:inherit;padding:1.5px;pointer-events:none;z-index:2;opacity:0;transition:opacity .3s;
+  background:conic-gradient(from var(--ang),transparent 0 55%,var(--t,#24E5FF) 75%,#24E5FF 85%,transparent 95%);
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;
+  width:auto;height:auto;left:0;top:0;border:0;animation:spin 3.5s linear infinite}
+.card:hover::after,.card:focus-visible::after{opacity:1}
+@keyframes spin{to{--ang:360deg}}
+.card .art{height:168px!important}.card .art svg{max-height:168px!important}
+.card .art::after{content:"";position:absolute;left:0;right:0;height:40%;top:-40%;background:linear-gradient(180deg,transparent,rgba(36,229,255,.14),transparent);animation:scan 5s ease-in-out infinite;pointer-events:none}
+.card .art{position:relative}
+@keyframes scan{0%,100%{top:-40%}50%{top:100%}}
+.hello h1{background-size:200% 100%;animation:sheen 9s ease-in-out infinite alternate}
+@keyframes sheen{to{background-position:100% 0}}
+.rl[aria-current="page"]::before{box-shadow:0 0 14px var(--t,#24E5FF)}
+.palbtn kbd{background:rgba(36,229,255,.12);border-color:rgba(36,229,255,.4);color:var(--cyan)}
+@media (prefers-reduced-motion:reduce){.card::after,.card .art::after,.hello h1{animation:none}}
+.bento{grid-template-columns:repeat(auto-fill,minmax(min(100%,235px),1fr))!important}
+.heat{filter:brightness(2.4) contrast(1.1) drop-shadow(0 0 12px rgba(36,229,255,.6))!important}
+.card .cfoot{margin-top:auto;flex-wrap:nowrap!important;justify-content:space-between;align-items:center}
+.card .cfoot .meta{flex-wrap:nowrap!important;min-width:0}.card .cfoot .chip{overflow:hidden;text-overflow:ellipsis;max-width:100%}
+.card .open{white-space:nowrap;flex:none}
+.card h3{min-height:2.5em;display:flex;align-items:flex-end}
+.card .cbody{padding-bottom:14px}
+
+.heat{filter:none!important}
+.suriword{font:800 clamp(56px,9vw,128px)/1 var(--display);letter-spacing:6px;background:linear-gradient(100deg,#fff 10%,#24E5FF 55%,#0866FF);-webkit-background-clip:text;background-clip:text;color:transparent;text-shadow:none;user-select:none;pointer-events:none;align-self:center;justify-self:end}
+.card .art::after{content:none!important;animation:none!important}
+body::after{animation:none!important;filter:none!important}
+.hello h1{animation:none!important}
+.card::after{animation:none!important}.card:hover::after,.card:focus-visible::after{animation:spin 3.5s linear infinite!important}
 </style>
 </head>
 <body>
@@ -331,9 +482,9 @@ dialog.pal::backdrop{background:rgba(3,10,22,.55);backdrop-filter:blur(4px)}
   <div class="scrim" id="scrim"></div>
 
   <aside class="rail" id="rail" aria-label="Navegación principal">
-    <a class="brand" href="#inicio" aria-label="VOLKSIA, ir al inicio">
+    <a class="brand" href="#inicio" aria-label="SURI, ir al inicio">
       <span class="mascot-slot" data-mascot></span>
-      <div><b>VOLKSIA</b><small>Workspace</small></div>
+      <div><b>SURI</b><small>Tools Center</small></div>
     </a>
     <nav class="railnav" id="railnav"></nav>
     <div class="railfoot">
@@ -364,7 +515,7 @@ dialog.pal::backdrop{background:rgba(3,10,22,.55);backdrop-filter:blur(4px)}
               <h1 id="greet">Buen día.</h1>
               <p>Elegí una herramienta para empezar a trabajar.</p>
             </div>
-            <div class="heat" id="heat" style="--i:1" role="button" tabindex="0" aria-label="VOLKSIA. Tocá para cambiar de forma"><canvas class="heat-canvas" id="heatCv" aria-hidden="true"></canvas></div>
+            <div class="heat suriword" style="--i:1" aria-label="SURI" role="img">SURI</div>
             <div class="clock" style="--i:1" aria-live="off">
               <div class="time"><span id="clockHM">--:--</span><span class="sec" id="clockS">--</span></div>
               <div class="date" id="clockDate"></div>
@@ -376,10 +527,12 @@ dialog.pal::backdrop{background:rgba(3,10,22,.55);backdrop-filter:blur(4px)}
             <div id="rlist" style="display:contents"></div>
           </div>
 
+          <div class="recents" id="favs" hidden style="--i:2"><h2>Favoritas</h2><div id="flist" style="display:contents"></div></div>
+
           <div class="bento" id="bento"></div>
 
           <div class="foot">
-            <span>VOLKSIA Workspace para Organización Sur</span>
+            <span>SURI Tools Center · Organización Sur</span>
             <span>Atajo para buscar: <kbd id="palkey2">Ctrl K</kbd></span>
           </div>
         </div>
@@ -422,10 +575,10 @@ dialog.pal::backdrop{background:rgba(3,10,22,.55);backdrop-filter:blur(4px)}
    Ejemplo: const AI_URL = "https://mi-ia.com";
    Tiene que empezar con https:// para que funcione en GitHub Pages.
    ============================================================ */
+/* ✏️ PEGÁ ACÁ LA URL DE SURI (IA principal), entre las comillas. Debe empezar con https://
+   Si queda vacía ("") SURI no aparece en el centro. */
 const AI_URL = "";
 
-/* Si tu IA no se muestra dentro del panel (muchos sitios lo bloquean),
-   poné false y se abrirá en una pestaña nueva con un botón. */
 const AI_EMBED = true;
 
 /* ---------- Herramientas ---------- */
@@ -434,7 +587,7 @@ const ALL_TOOLS = [
   {id:'asistencia', name:'Control de Asistencia', short:'Asistencia', desc:'Proyecto de control de asistencia de Organización Sur.', src:'herramientas/control-asistencia.html', kind:'local', color:'#0E9F8E', icon:'i-clock', size:'c-md', keys:'presentismo horarios ingreso egreso'},
   {id:'encuestas', name:'Gestor de Encuestas', short:'Encuestas', desc:'Prepará y trabajá tus encuestas internas a partir de planillas de Excel.', src:'herramientas/gestor-encuestas.html', kind:'local', color:'#E08A00', icon:'i-chart', size:'c-md', keys:'encuesta interna pasos taller'},
   {id:'certificados', name:'Gestor de Certificados', short:'Certificados', desc:'Sistema web para gestionar los certificados de los trabajadores.', src:'https://gestor-certificados-06pf.onrender.com/', kind:'web', embed:false, launch:'El Gestor de Certificados tiene su propio sitio seguro y no permite mostrarse dentro de otro panel. Se abre en una pestaña nueva, y cuando termines volvés acá.', color:'#7B4DE8', icon:'i-badge', size:'c-wide', keys:'certificado sucursal trabajadores', slow:'Este sistema está alojado en internet y puede tardar hasta un minuto en despertar la primera vez.'},
-  {id:'ia', name:'Mi IA', short:'Mi IA', desc:'Tu asistente de inteligencia artificial, siempre a mano dentro del espacio de trabajo.', src:AI_URL, kind:'web', embed:AI_EMBED, launch:'Tu IA se abre en su propia pestaña porque el sitio no permite mostrarse dentro de otro panel.', color:'#00A8F0', icon:'i-spark', size:'c-full dark', keys:'inteligencia artificial asistente chat', slow:'Algunos sitios tardan en abrir. Si no aparece nada, usá Abrir aparte.'}
+  {id:'ia', name:'SURI · IA principal', short:'SURI', desc:'Tu asistente de inteligencia artificial, siempre a mano dentro del espacio de trabajo.', src:AI_URL, kind:'web', embed:AI_EMBED, launch:'Tu IA se abre en su propia pestaña porque el sitio no permite mostrarse dentro de otro panel.', color:'#00A8F0', icon:'i-spark', size:'c-full dark', keys:'inteligencia artificial asistente chat', slow:'Algunos sitios tardan en abrir. Si no aparece nada, usá Abrir aparte.'}
 ];
 /* Mi IA no aparece hasta que pegues su URL en AI_URL: así nadie ve una
    herramienta vacía ni instrucciones de configuración. */
@@ -470,11 +623,11 @@ function toast(msg){
 function setTheme(mode){
   document.documentElement.dataset.theme = mode;
   const m=document.querySelector('meta[name="theme-color"]');
-  if(m) m.content = mode==='dark' ? '#050C18' : '#EEF1F5';
+  if(m) m.content = mode==='dark' ? '#030711' : '#EEF1F5';
   store.set('volksia_theme',mode);
 }
 function toggleTheme(){ setTheme(document.documentElement.dataset.theme==='dark'?'light':'dark'); }
-setTheme(store.get('volksia_theme', matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'));
+setTheme('dark');
 $('#themebtn').addEventListener('click',toggleTheme);
 
 /* ---------- Menú lateral ---------- */
@@ -515,12 +668,13 @@ tick(); setInterval(()=>{ if(!document.hidden) tick(); },1000);
 document.addEventListener('visibilitychange',()=>{ if(!document.hidden) tick(); });
 
 /* ---------- Tarjetas de inicio ---------- */
+const CAT={turnero:'Operaciones',asistencia:'Personal',encuestas:'Datos',certificados:'Documentos',ia:'Inteligencia artificial'};
 function buildCards(){
   $('#bento').innerHTML = TOOLS.map((t,i)=>`
-    <a class="card ${t.size}" href="#${t.id}" style="--t:${t.color};--i:${i+2}" data-id="${t.id}">
-      <div class="art">${ART[t.id]}</div>
+    <a class="card ${t.size}" data-cat="${CAT[t.id]||'Otras'}" href="#${t.id}" style="--t:${t.color};--i:${i+2}" data-id="${t.id}">
+      <div class="art">${ART[t.id]}</div><button type="button" class="fav" data-fav="${t.id}" aria-pressed="${isFav(t.id)}" aria-label="Marcar ${t.short} como favorita"><svg class="i" viewBox="0 0 24 24"><path d="M12 3.5l2.6 5.4 5.9.8-4.3 4.1 1 5.9L12 16.9 6.8 19.7l1-5.9L3.5 9.7l5.9-.8z"/></svg></button>
       <div class="cbody"><h3>${t.name}</h3><p>${t.desc}</p></div>
-      <div class="cfoot"><span class="meta"><span class="chip">${t.kind==='web'?'Sistema web':'Herramienta interna'}</span><kbd class="hk" aria-hidden="true">${i+1}</kbd></span><span class="open">Abrir ${ico('i-arrow')}</span></div>
+      <div class="cfoot"><span class="meta"><span class="chip">${t.kind==='web'?'Web':'Interna'}</span><kbd class="hk" aria-hidden="true">${i+1}</kbd></span><span class="open">Abrir ${ico('i-arrow')}</span></div>
     </a>`).join('');
 }
 
@@ -609,18 +763,19 @@ function showTool(t){
   $('#stMeta').textContent=t.kind==='web'?'Sistema web':'Herramienta interna';
   $('#crumbs').innerHTML=`<a href="#inicio">Inicio</a>${ico('i-chev')}<span class="cur">${t.name}</span>`;
   setNav(t.id); setMenu(false);
-  document.title=`${t.name} | VOLKSIA Workspace`;
+  document.title=`${t.name} | SURI Tools Center`;
   pushRecent(t.id);
   /* lectores de pantalla: anunciar la herramienta que se abrió */
   $('#stName').focus({preventScroll:true});
 }
 function showHome(){
+  renderFavs();
   current=null;
   setFocus(false);
   $('#stage').hidden=true; $('#home').hidden=false;
   $('#crumbs').innerHTML=`<span class="cur">Inicio</span>`;
   setNav('inicio'); setMenu(false);
-  document.title='VOLKSIA Workspace';
+  document.title='SURI Tools Center';
   renderRecents();
   $('#home').scrollTop=0;
   if(booted) $('#main').focus({preventScroll:true});
@@ -700,429 +855,12 @@ addEventListener('keydown',e=>{
   }
 });
 
-/* ---------- Skill /bencho: Heat word (en el inicio) ---------- */
-(function(){
-/* ══ Heat word ════════════════════════════════════════════
-   A big word in flat, dull grey — until the hand comes. Around
-   the cursor the word turns into a heat map of its own shape:
-   deep navy in the middle of every stroke, through blue, cyan,
-   yellow, orange and red, to a pink rim. Right under the pointer
-   the heat opens up and the strokes thin, like something melting;
-   leave and it fades back to grey. Press it and the next shape
-   melts in.
-
-   ── A FIELD, THEN A PALETTE ─────────────────────────────
-   The word is drawn once, blurred, into a grey field: bright in
-   the thick of a stroke, fading at its edge. The cursor adds a
-   soft round of heat to that field. Every pixel's brightness is
-   then looked up in a 256-entry table of colours. Two strokes
-   close together overlap in the field, so they fuse where the
-   heat pools — that is the liquid, and nothing animates it but
-   the field.
-
-   ── THE BLUR IS A SHADOW ────────────────────────────────
-   ctx.filter is not in every Safari, shadowBlur is. The word is
-   drawn far off the canvas with its shadow thrown back on, so
-   only the blurred shadow lands. */
-
-/* (Port a JS sin React: este proyecto es HTML puro, así que el
-   estado vive en variables y el lienzo se pinta directo.) */
-
-/* más ancho que el original: "VOLKSIA" tiene siete letras y necesita aire para leerse */
-const W = 380;
-const H = 150;
-/* one word, always: its curves and its straight stems both melt well */
-const word = "VOLKSIA";
-
-const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
-
-/* the word is the panel's own display face (Bricolage Grotesque, bold),
-   so it is already on the page and never fetched twice */
-const FACE = { family: "Bricolage Grotesque", weight: 700 };
-
-/* ── or a shape, instead of a word ─────────────────────────
-   The heat reads any shape, and the ones that look most liquid
-   are where strokes meet or nearly touch: bars crossing at a
-   centre, dots close enough to run together. Each takes a seed,
-   so a press deals a new arrangement of the same kind. */
-const SHAPES = ["Word", "Dots", "Asterisk"];
-
-function rng(seed) {
-  let t = seed * 9301 + 49297;
-  return () => {
-    t = (t * 9301 + 49297) % 233280;
-    return t / 233280;
-  };
-}
-
-/* a thick line through a list of points */
-function line(g, pts) {
-  g.beginPath();
-  pts.forEach(([x, y], i) => (i ? g.lineTo(x, y) : g.moveTo(x, y)));
-  g.stroke();
-}
-
-/* where the hand is, in the field's pixels, and how present it is:
-   { x, y, on, area } */
-function drawShape(g, shape, w, h, r, seed, hand) {
-  const rand = rng(seed);
-  const cx = w / 2, cy = h / 2;
-  g.lineCap = "round";
-  g.lineJoin = "round";
-  if (shape === "Dots") {
-    /* a loose grid, near enough that neighbours run together. The
-       dots under the hand swell, on a gaussian, so the ones nearest
-       grow into each other and fuse while the far ones keep their
-       size — and the rand() calls stay in the same order, so the
-       arrangement never shifts while they do */
-    const cols = 7, rows = 3;
-    const reach = 62 * r * (hand ? hand.area : 1);
-    for (let j = 0; j < rows; j++) {
-      for (let i = 0; i < cols; i++) {
-        const x = cx + (i - (cols - 1) / 2) * 38 * r + (rand() - 0.5) * 8 * r;
-        const y = cy + (j - (rows - 1) / 2) * 38 * r + (rand() - 0.5) * 8 * r;
-        let rad = (9 + rand() * 7) * r;
-        if (hand && hand.on > 0.002) {
-          const d2 = ((x - hand.x) ** 2 + (y - hand.y) ** 2) / (reach * reach);
-          rad *= 1 + 0.75 * hand.on * Math.exp(-d2);
-        }
-        g.beginPath();
-        g.arc(x, y, rad, 0, Math.PI * 2);
-        g.fill();
-      }
-    }
-  } else if (shape === "Asterisk") {
-    /* fat bars crossing, every one of them through the centre */
-    g.lineWidth = 16 * r;
-    const n = 3 + Math.floor(rand() * 2), turn = rand() * Math.PI;
-    for (let i = 0; i < n; i++) {
-      const a = turn + (i / n) * Math.PI;
-      const c = Math.cos(a) * 66 * r, sn = Math.sin(a) * 66 * r;
-      line(g, [[cx - c, cy - sn], [cx + c, cy + sn]]);
-    }
-  }
-}
-
-/* the face is on the page already, but may not have arrived by
-   the first frame — waited for, or the first word is the fallback.
-   Never waited for long: after a second and a half it is drawn
-   in the fallback, which is still a word. */
-async function ensure() {
-  try {
-    await Promise.race([
-      document.fonts && document.fonts.load(`${FACE.weight} 100px "${FACE.family}"`),
-      new Promise((r) => setTimeout(r, 1500)),
-    ]);
-  } catch (e) {
-    /* drawn in the fallback, which is still a word */
-  }
-}
-
-/* the palettes, rim (0) to core (1); below the floor it is the card.
-   Neon is the heat camera: a pink rim through red, yellow and
-   cyan to a navy core. The others keep its shape — a light rim, a
-   dark core, a bright band between — in other colours. */
-const PALETTES = {
-  Neon: [
-    [0.0, [255, 150, 225]],
-    [0.1, [255, 90, 190]],
-    [0.2, [255, 50, 60]],
-    [0.32, [255, 150, 40]],
-    [0.42, [255, 228, 100]],
-    [0.54, [120, 215, 255]],
-    [0.68, [40, 120, 245]],
-    [0.84, [12, 44, 150]],
-    [1.0, [6, 18, 80]],
-  ],
-  Fire: [
-    [0.0, [255, 238, 180]],
-    [0.16, [255, 200, 80]],
-    [0.34, [255, 130, 30]],
-    [0.52, [228, 58, 28]],
-    [0.72, [150, 18, 44]],
-    [0.88, [74, 6, 42]],
-    [1.0, [30, 2, 24]],
-  ],
-  Sea: [
-    [0.0, [210, 255, 225]],
-    [0.16, [110, 245, 175]],
-    [0.34, [40, 215, 200]],
-    [0.52, [40, 150, 235]],
-    [0.72, [80, 70, 205]],
-    [0.88, [60, 20, 130]],
-    [1.0, [24, 8, 60]],
-  ],
-  Pop: [
-    [0.0, [255, 225, 240]],
-    [0.16, [255, 160, 210]],
-    [0.34, [245, 110, 190]],
-    [0.52, [180, 110, 255]],
-    [0.72, [100, 150, 255]],
-    [0.88, [40, 70, 190]],
-    [1.0, [20, 24, 100]],
-  ],
-};
-const FLOOR = 34;
-
-function table(STOPS) {
-  const t = new Uint8ClampedArray(256 * 4);
-  for (let i = 0; i < 256; i++) {
-    if (i < FLOOR) {
-      /* under the floor: nothing, so the card shows through */
-      t[i * 4 + 3] = 0;
-      continue;
-    }
-    const u = (i - FLOOR) / (255 - FLOOR);
-    let k = 0;
-    while (k < STOPS.length - 2 && u > STOPS[k + 1][0]) k++;
-    const [u0, c0] = STOPS[k];
-    const [u1, c1] = STOPS[k + 1];
-    const f = clamp((u - u0) / (u1 - u0), 0, 1);
-    for (let c = 0; c < 3; c++) t[i * 4 + c] = c0[c] + (c1[c] - c0[c]) * f;
-    /* the rim fades in over the first stretch, so the pink is a
-       glow at the edge rather than a hard line */
-    t[i * 4 + 3] = 255 * clamp((i - FLOOR) / 26, 0, 1);
-  }
-  return t;
-}
-/* one table per palette, made the first time it is asked for */
-const LUTS = new Map();
-function lut(name) {
-  let t = LUTS.get(name);
-  if (!t) {
-    t = table(PALETTES[name] || PALETTES.Neon);
-    LUTS.set(name, t);
-  }
-  return t;
-}
-
-/* ── and at rest, just grey ────────────────────────────────
-   The word sits on the card as a flat, dull grey — solid where
-   the heat would be, soft at the edge — and the heat map is only
-   ever shown where the hand is. GREY_A is the grey's alpha per
-   brightness: the letter's body at full, a short soft edge. */
-const GREY = [150, 150, 154];
-const GREY_A = new Uint8ClampedArray(256);
-for (let i = 0; i < 256; i++) GREY_A[i] = 255 * clamp((i - 70) / 45, 0, 1);
-
-const el = document.getElementById("heat");
-const shown = document.getElementById("heatCv");
-if (!el || !shown) return;
-
-/* how much heat the cursor brings, how soft the letters are, how big the
-   patch under the hand is (each 0..100), and which heat map it reveals */
-const knobs = { heat: 60, soft: 18, area: 50, colors: "Neon" };
-let seed = Math.floor(Math.random() * 1000);
-let shape = "Word";
-const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
-const st = {
-  base: null, work: null,
-  px: 0.5, py: 0.5, tx: 0.5, ty: 0.5,
-  power: 0, want: 0,
-  grow: 0,
-  raf: 0,
-  ratio: 1,
-  /* the dots were last drawn swollen, and owe one redraw at rest */
-  swollen: false,
-};
-/* Area as a multiplier on every radius the hand has: half at 0,
-   as it was at 50, half again at 100 */
-const spread = () => 0.5 + clamp(knobs.area, 0, 100) / 100;
-
-/* the word, blurred, into the base field — redrawn when the
-   word or the softness changes */
-function build() {
-  const s = st;
-  const r = Math.min(2, window.devicePixelRatio || 1);
-  s.ratio = r;
-  const w = Math.round(W * r), h = Math.round(H * r);
-  const base = s.base || document.createElement("canvas");
-  base.width = w; base.height = h;
-  s.base = base;
-  if (!s.work) s.work = document.createElement("canvas");
-  s.work.width = w; s.work.height = h;
-  shown.width = w; shown.height = h;
-  field();
-}
-
-/* the field itself, into the base at its current size — once per
-   build for a word, and every frame the hand moves for the dots,
-   which change size under it */
-function field() {
-  const s = st;
-  const base = s.base;
-  const r = s.ratio;
-  const w = base.width, h = base.height;
-  const g = base.getContext("2d");
-  g.setTransform(1, 0, 0, 1, 0, 0);
-  g.shadowColor = "transparent";
-  g.fillStyle = "#000";
-  g.fillRect(0, 0, w, h);
-  const blur = (6 + (clamp(knobs.soft, 0, 100) / 100) * 16) * r;
-  const off = w * 3;
-  g.shadowColor = "#fff";
-  g.shadowBlur = blur;
-  g.shadowOffsetX = off;
-  g.fillStyle = "#fff";
-  g.strokeStyle = "#fff";
-  if (shape !== "Word") {
-    /* drawn off the canvas so only the blurred shadow lands */
-    g.save();
-    g.translate(-off, 0);
-    const hand = { x: s.px * w, y: s.py * h, on: s.power, area: spread() };
-    drawShape(g, shape, w, h, r, seed, hand);
-    drawShape(g, shape, w, h, r, seed, hand);
-    g.restore();
-    return;
-  }
-  /* as large as fits */
-  let size = 150 * r;
-  const f = `"${FACE.family}", system-ui, sans-serif`;
-  g.font = `${FACE.weight} ${size}px ${f}`;
-  const fit = (w * 0.88) / g.measureText(word).width;
-  size = Math.min(size, size * fit);
-  g.font = `${FACE.weight} ${size}px ${f}`;
-  g.textAlign = "center";
-  g.textBaseline = "middle";
-  /* twice over, so the thick of a stroke saturates */
-  g.fillText(word, w / 2 - off, h / 2 + size * 0.04);
-  g.fillText(word, w / 2 - off, h / 2 + size * 0.04);
-}
-
-/* one frame: base, plus heat at the cursor, through the palette */
-function paint() {
-  const s = st;
-  const c = shown;
-  if (!s.base || !s.work) return;
-  const w = c.width, h = c.height;
-  /* the dots follow the hand, so their field is redrawn with it */
-  if (shape === "Dots" && (s.power > 0.002 || s.swollen)) {
-    field();
-    s.swollen = s.power > 0.002;
-  }
-  const g = s.work.getContext("2d", { willReadFrequently: true });
-  g.globalCompositeOperation = "source-over";
-  g.globalAlpha = 1;
-  g.fillStyle = "#000";
-  g.fillRect(0, 0, w, h);
-  /* the shape grows in from nothing when it changes */
-  g.globalAlpha = s.grow;
-  g.drawImage(s.base, 0, 0);
-  g.globalAlpha = 1;
-  if (s.power > 0.002) {
-    const cx = s.px * w, cy = s.py * h;
-    const rad = (60 + (knobs.heat / 100) * 50) * s.ratio * spread();
-    const amt = s.power * (0.35 + (knobs.heat / 100) * 0.55);
-    /* the cursor COOLS the field: a multiply that dims it toward
-       the middle of the pointer, so the navy cores open up into
-       rings of blue, cyan, yellow and red and the strokes thin
-       there — the letters melting under the hand */
-    g.globalCompositeOperation = "multiply";
-    const cool = g.createRadialGradient(cx, cy, 0, cx, cy, rad);
-    const v = (k) => Math.round(255 * (1 - amt * k));
-    cool.addColorStop(0, `rgb(${v(1)},${v(1)},${v(1)})`);
-    cool.addColorStop(0.45, `rgb(${v(0.6)},${v(0.6)},${v(0.6)})`);
-    cool.addColorStop(1, "rgb(255,255,255)");
-    g.fillStyle = cool;
-    g.fillRect(0, 0, w, h);
-  }
-  const src = g.getImageData(0, 0, w, h).data;
-  const LUT = lut(knobs.colors);
-  const out = c.getContext("2d").createImageData(w, h);
-  const d = out.data;
-  /* the reveal: how much heat map each pixel shows, a soft disc
-     around the cursor scaled by how present the hand is. Outside
-     it the word is grey. */
-  const cx = s.px * w, cy = s.py * h;
-  const R = (95 + (knobs.heat / 100) * 55) * s.ratio * spread();
-  const R2 = R * R;
-  const on = s.power;
-  for (let y = 0, i = 0; y < h; y++) {
-    const dy2 = (y - cy) * (y - cy);
-    for (let x = 0; x < w; x++, i += 4) {
-      const f = src[i];
-      const v = f * 4;
-      let m = 0;
-      if (on > 0.002) {
-        const q = ((x - cx) * (x - cx) + dy2) / R2;
-        if (q < 1) {
-          const t = 1 - q;
-          m = on * t * t * (3 - 2 * t);
-        }
-      }
-      const ga = GREY_A[f];
-      if (m <= 0) {
-        d[i] = GREY[0]; d[i + 1] = GREY[1]; d[i + 2] = GREY[2]; d[i + 3] = ga;
-        continue;
-      }
-      const k = 1 - m;
-      d[i] = GREY[0] * k + LUT[v] * m;
-      d[i + 1] = GREY[1] * k + LUT[v + 1] * m;
-      d[i + 2] = GREY[2] * k + LUT[v + 2] * m;
-      d[i + 3] = ga * k + LUT[v + 3] * m;
-    }
-  }
-  c.getContext("2d").putImageData(out, 0, 0);
-}
-
-/* the loop runs only while something is moving */
-function run() {
-  const s = st;
-  if (s.raf) return;
-  let prev = performance.now();
-  const step = (t) => {
-    const dt = Math.min(0.05, (t - prev) / 1000);
-    prev = t;
-    const k = 1 - Math.pow(0.002, dt);
-    s.px += (s.tx - s.px) * k;
-    s.py += (s.ty - s.py) * k;
-    s.power += (s.want - s.power) * (1 - Math.pow(0.01, dt));
-    s.grow = Math.min(1, s.grow + dt / 0.9);
-    paint();
-    const still = s.grow >= 1 && Math.abs(s.want - s.power) < 0.004 && Math.abs(s.tx - s.px) < 0.001 && Math.abs(s.ty - s.py) < 0.001;
-    if (still && s.want === 0) s.power = 0;
-    s.raf = still ? 0 : requestAnimationFrame(step);
-    if (still) paint();
-  };
-  s.raf = requestAnimationFrame(step);
-}
-
-function go() {
-  cancelAnimationFrame(st.raf); st.raf = 0;
-  build();
-  st.grow = reduced ? 1 : 0;
-  run();
-}
-/* the face first, or the first word is drawn in the fallback */
-ensure().then(go);
-
-function aim(e) {
-  const r = el.getBoundingClientRect();
-  st.tx = (e.clientX - r.left) / r.width;
-  st.ty = (e.clientY - r.top) / r.height;
-}
-function next() {
-  /* the next shape round, the dots and the asterisk dealt a
-     fresh arrangement as they come back */
-  const i = SHAPES.indexOf(shape);
-  seed += 1;
-  shape = SHAPES[(i + 1) % SHAPES.length];
-  el.setAttribute("aria-label", shape === "Word" ? `${word}. Tocá para cambiar de forma` : `${shape === "Dots" ? "Puntos" : "Asterisco"}. Tocá para cambiar de forma`);
-  ensure().then(go);
-}
-el.addEventListener("pointerenter", (e) => { aim(e); st.px = st.tx; st.py = st.ty; st.want = 1; run(); });
-el.addEventListener("pointermove", (e) => { aim(e); st.want = 1; run(); });
-el.addEventListener("pointerleave", () => { st.want = 0; run(); });
-el.addEventListener("click", next);
-el.addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); next(); } });
-})();
-
 /* ---------- Mascota: te sigue con la mirada ---------- */
-/* Un robotito propio de VOLKSIA. Tiene cuerpo azul marino, antena celeste
+/* Un robotito propio de SURI. Tiene cuerpo azul marino, antena celeste
    (el mismo puntito del logo anterior), ojos que siguen el cursor,
    parpadea cada tanto y pega un saltito si lo tocás. */
 function mascot(){
-  return `<svg class="mascot" viewBox="0 0 64 64" role="img" aria-label="VOLKSIA">
+  return `<svg class="mascot" viewBox="0 0 64 64" role="img" aria-label="SURI">
     <g class="m-hop">
       <rect x="18" y="52" width="10" height="7" rx="3.5" fill="#0B3C86"/>
       <rect x="36" y="52" width="10" height="7" rx="3.5" fill="#0B3C86"/>
@@ -1167,9 +905,28 @@ $('.brand').addEventListener('click',()=>{
   setTimeout(()=>m.classList.remove('hop'),650);
 });
 
+
+/* ---------- SURI: favoritos, estado real y configuración ---------- */
+function isFav(id){return store.get('suri_favs',[]).includes(id)}
+function toggleFav(id){
+  let f=store.get('suri_favs',[]); f=f.includes(id)?f.filter(x=>x!==id):[id,...f]; store.set('suri_favs',f);
+  document.querySelectorAll(`[data-fav="${id}"]`).forEach(b=>b.setAttribute('aria-pressed',String(f.includes(id))));
+  renderFavs();
+}
+function renderFavs(){
+  const r=store.get('suri_favs',[]).map(id=>TOOLS.find(t=>t.id===id)).filter(Boolean);
+  $('#favs').hidden=!r.length;
+  $('#flist').innerHTML=r.map(t=>`<a class="rchip" href="#${t.id}" style="--t:${t.color}"><span class="ri">${ico(t.icon)}</span>${t.short}</a>`).join('');
+}
+document.addEventListener('click',e=>{const b=e.target.closest('[data-fav]'); if(!b) return; e.preventDefault(); e.stopPropagation(); toggleFav(b.dataset.fav)},true);
+
+
+
+
+$('#bento').addEventListener('pointermove',e=>{const c=e.target.closest('.card'); if(!c) return; const r=c.getBoundingClientRect(); c.style.setProperty('--mx',(e.clientX-r.left)+'px'); c.style.setProperty('--my',(e.clientY-r.top)+'px')});
 /* ---------- Inicio ---------- */
 let booted=false;
-buildNav(); buildCards(); route(); booted=true;
+buildNav(); buildCards(); renderFavs(); route(); booted=true;
 setTimeout(()=>app.classList.remove('intro'),1400);
 </script>
 </body>
