@@ -15,13 +15,13 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect x='8' y='14' width='48' height='40' rx='15' fill='%23001E50'/%3E%3Cpath d='M32 14V9' stroke='%2300A8F0' stroke-width='3' stroke-linecap='round'/%3E%3Ccircle cx='32' cy='7' r='4.2' fill='%2300A8F0'/%3E%3Ccircle cx='23.500' cy='32' r='8.500' fill='%23fff'/%3E%3Ccircle cx='40.500' cy='32' r='8.500' fill='%23fff'/%3E%3Ccircle cx='24.500' cy='33' r='4.200' fill='%230A1A2F'/%3E%3Ccircle cx='41.500' cy='33' r='4.200' fill='%230A1A2F'/%3E%3Cpath d='M26 46q6 5 12 0' fill='none' stroke='%2300A8F0' stroke-width='2.600' stroke-linecap='round'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Instrument+Sans:wght@400..700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500..800&family=Rajdhani:wght@500..700&family=Instrument+Sans:wght@400..700&display=swap" rel="stylesheet">
 <style>
 :root{
   --bg:#EEF1F5;--surface:#FFFFFF;--surface-2:#F5F7FA;--ink:#0A1A2F;--ink-2:#44546B;--ink-3:#7686A0;
   --line:#DCE3EC;--line-2:#C6D0DD;--brand:#001E50;--sky:#009FE3;--ok:#16A36A;--bad:#D6453D;
   --rail:260px;--ring:#009FE3;
-  --display:"Bricolage Grotesque","Instrument Sans",ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+  --display:"Orbitron","Bricolage Grotesque","Instrument Sans",ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
   --text:"Instrument Sans",ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
   color-scheme:light;
 }
@@ -312,6 +312,71 @@ html[data-theme="dark"] .topbar{background:rgba(3,7,17,.6);backdrop-filter:blur(
 .setin input{width:100%;padding:12px 14px;min-height:44px;border-radius:12px;border:1px solid var(--line-2);background:var(--bg)}
 .setin .row{display:flex;gap:10px;flex-wrap:wrap}.setin .err{color:var(--bad);min-height:1.2em;font-size:13px}
 @media (prefers-reduced-motion:reduce){.chip.st .sd{animation:none}}
+
+/* ======== SURI ULTRA: visual futurista ======== */
+html,html[data-theme]{--hud:rgba(36,229,255,.55)}
+.themebtn{display:none!important}
+body{background:#030711!important;font-family:"Rajdhani","Instrument Sans",system-ui,sans-serif;font-size:16px;letter-spacing:.2px}
+body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:linear-gradient(rgba(36,229,255,.05) 1px,transparent 1px) 0 0/44px 44px,linear-gradient(90deg,rgba(36,229,255,.05) 1px,transparent 1px) 0 0/44px 44px;
+  mask-image:radial-gradient(ellipse 80% 70% at 60% 30%,#000 20%,transparent 80%)}
+body::after{content:"";position:fixed;inset:-20%;z-index:0;pointer-events:none;filter:blur(60px);opacity:.9;
+  background:radial-gradient(40% 35% at 78% 8%,rgba(8,102,255,.55),transparent 70%),radial-gradient(35% 30% at 5% 95%,rgba(36,229,255,.28),transparent 70%),radial-gradient(30% 30% at 50% 60%,rgba(120,60,255,.14),transparent 70%);
+  animation:aur 16s ease-in-out infinite alternate}
+@keyframes aur{to{transform:translate3d(3%,-2%,0) scale(1.08)}}
+.app{position:relative;z-index:1}
+.rail{background:linear-gradient(180deg,rgba(10,25,48,.78),rgba(3,7,17,.85))!important;backdrop-filter:blur(18px);border-right:1px solid rgba(36,229,255,.22)!important;box-shadow:12px 0 60px -30px rgba(8,102,255,.7)}
+.brand b{font:800 22px var(--display);letter-spacing:4px;background:linear-gradient(90deg,#fff,#24E5FF);-webkit-background-clip:text;background-clip:text;color:transparent}
+.brand small{color:var(--cyan);letter-spacing:3px;text-transform:uppercase;font-size:10px}
+.mascot-slot{filter:drop-shadow(0 0 14px rgba(36,229,255,.7))}
+.rl{border:1px solid transparent;font-weight:600;letter-spacing:.5px;text-transform:uppercase;font-size:13px}
+.rl:hover{background:rgba(36,229,255,.07)!important;border-color:rgba(36,229,255,.3);transform:translateX(3px)}
+.rl[aria-current="page"]{background:linear-gradient(90deg,color-mix(in srgb,var(--t,#168CFF) 28%,transparent),transparent)!important;border-color:color-mix(in srgb,var(--t,#24E5FF) 50%,transparent);box-shadow:0 0 22px -8px var(--t,#24E5FF)}
+.rl[aria-current="page"] svg.i{filter:drop-shadow(0 0 6px var(--t,#24E5FF))}
+.status{border:1px solid rgba(45,209,142,.35);background:rgba(45,209,142,.08)!important;text-transform:uppercase;letter-spacing:1.5px;font-size:11px}
+.topbar{background:rgba(3,7,17,.55)!important;backdrop-filter:blur(14px);border-bottom:1px solid rgba(36,229,255,.18)!important}
+.palbtn{background:rgba(16,36,65,.6)!important;border:1px solid rgba(36,229,255,.35)!important;box-shadow:0 0 24px -10px #24E5FF;color:var(--ink-2)}
+.palbtn:hover{border-color:#24E5FF!important;box-shadow:0 0 30px -4px #24E5FF}
+.crumbs .cur{text-transform:uppercase;letter-spacing:3px;color:var(--cyan);font:600 12px var(--display)}
+.hello h1{font:800 clamp(34px,5.5vw,76px)/1.02 var(--display)!important;letter-spacing:2px;text-transform:uppercase;background:linear-gradient(100deg,#fff 20%,#24E5FF 60%,#0866FF);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 0 22px rgba(36,229,255,.35))}
+.hello p{color:var(--ink-2);font-size:18px}
+.hello p::before{content:"// ";color:var(--cyan)}
+.clock .time{font-family:var(--display)!important;color:#24E5FF!important;text-shadow:0 0 28px rgba(36,229,255,.7);letter-spacing:2px}
+.clock .date{text-transform:uppercase;letter-spacing:3px;color:var(--ink-2)!important;font-size:13px}
+.recents h2{font:700 12px var(--display);letter-spacing:3px;text-transform:uppercase;color:var(--cyan)}
+.rchip{background:rgba(16,36,65,.65)!important;border:1px solid rgba(36,229,255,.3)!important;border-radius:14px;box-shadow:0 0 18px -10px #24E5FF}
+.rchip:hover{border-color:#24E5FF!important;box-shadow:0 0 26px -4px #24E5FF}
+.card{background:linear-gradient(155deg,rgba(16,36,65,.82),rgba(6,19,38,.9))!important;border:1px solid rgba(36,229,255,.28)!important;border-radius:22px!important;overflow:hidden;backdrop-filter:blur(10px);box-shadow:0 0 0 1px rgba(8,102,255,.12) inset,0 24px 60px -28px rgba(8,102,255,.8)!important;transition:transform .25s,box-shadow .25s,border-color .25s}
+.card::before{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;border-radius:inherit;background:linear-gradient(120deg,transparent 40%,rgba(36,229,255,.16) 50%,transparent 60%) -150% 0/250% 100% no-repeat;transition:background-position .9s}
+.card:hover{transform:translateY(-6px);border-color:#24E5FF!important;box-shadow:0 0 40px -6px color-mix(in srgb,var(--t,#24E5FF) 70%,#24E5FF),0 24px 60px -24px rgba(8,102,255,.9)!important}
+.card:hover::before{background-position:150% 0}
+.card::after{content:"";position:absolute;left:14px;top:14px;width:18px;height:18px;border-left:2px solid var(--hud);border-top:2px solid var(--hud);border-radius:6px 0 0 0;pointer-events:none;z-index:2}
+.card .art{background:radial-gradient(circle at 50% 40%,color-mix(in srgb,var(--t,#168CFF) 30%,transparent),transparent 70%)!important}
+.card .art svg *{stroke:var(--t,#24E5FF)}
+.card .art .a-solid,.card .art .a-fill{fill:var(--t,#24E5FF)!important;filter:drop-shadow(0 0 8px var(--t,#24E5FF))}
+.card .art svg{filter:drop-shadow(0 0 10px color-mix(in srgb,var(--t,#24E5FF) 60%,transparent))}
+.card h3{font:700 19px var(--display)!important;letter-spacing:1px;text-transform:uppercase}
+.card p{color:var(--ink-2)}
+.chip{background:rgba(36,229,255,.08)!important;border:1px solid rgba(36,229,255,.28)!important;color:var(--cyan)!important;text-transform:uppercase;letter-spacing:1.2px;font-size:11px;font-weight:700}
+.card .open{color:#fff!important;font-weight:700;text-transform:uppercase;letter-spacing:2px;font-size:13px;text-shadow:0 0 14px var(--t,#24E5FF)}
+.fav{background:rgba(3,7,17,.6)!important;border-color:rgba(36,229,255,.4)!important}
+.stagebar{background:rgba(6,19,38,.75)!important;backdrop-filter:blur(14px);border-bottom:1px solid rgba(36,229,255,.25)!important}
+.stagetitle h2{font:700 16px var(--display);letter-spacing:2px;text-transform:uppercase}
+.btn{background:rgba(16,36,65,.7)!important;border:1px solid rgba(36,229,255,.35)!important;color:var(--ink)!important;border-radius:12px;font-weight:600;text-transform:uppercase;letter-spacing:1px;font-size:12px;min-height:40px}
+.btn:hover{border-color:#24E5FF!important;box-shadow:0 0 22px -4px #24E5FF}
+.btn.primary{background:linear-gradient(90deg,#0866FF,#24E5FF)!important;border-color:transparent!important;color:#02101f!important;box-shadow:0 0 28px -6px #24E5FF}
+.frame{background:#030711}
+.pal{background:rgba(6,19,38,.92)!important;border:1px solid rgba(36,229,255,.4)!important;box-shadow:0 0 70px -10px rgba(8,102,255,.8)!important;backdrop-filter:blur(20px)}
+.pal::backdrop{background:rgba(3,7,17,.75);backdrop-filter:blur(5px)}
+.pli.sel{background:linear-gradient(90deg,rgba(36,229,255,.18),transparent)!important}
+.foot{color:var(--ink-3);text-transform:uppercase;letter-spacing:2px;font-size:11px}
+@media (max-width:760px){body::before{background-size:32px 32px}.hello h1{font-size:clamp(30px,10vw,52px)!important}.card:hover{transform:none}}
+@media (prefers-reduced-motion:reduce){body::after{animation:none}.card,.rl{transition:none}}
+
+.rl{font-size:11.5px;letter-spacing:.3px;gap:10px;padding-inline:10px}.rl .lbl{overflow:hidden;text-overflow:ellipsis}
+.heat{filter:brightness(2.6) saturate(1.4) drop-shadow(0 0 20px rgba(36,229,255,.65))}
+.cfoot{flex-wrap:wrap;gap:10px}.cfoot .meta{flex-wrap:wrap;gap:6px}.chip{white-space:nowrap;font-size:10px}
+.hk{display:none}
 </style>
 </head>
 <body>
@@ -441,15 +506,6 @@ html[data-theme="dark"] .topbar{background:rgba(3,7,17,.6);backdrop-filter:blur(
   <div class="palfoot"><span><kbd>↑</kbd><kbd>↓</kbd> moverse</span><span><kbd>Enter</kbd> abrir</span></div>
 </dialog>
 
-<dialog class="setdlg" id="setdlg" aria-labelledby="setTitle"><div class="setin">
-  <h2 id="setTitle">Configuración</h2>
-  <label for="aiUrl"><b>Dirección de SURI (IA principal)</b></label>
-  <input id="aiUrl" type="url" inputmode="url" placeholder="https://..." autocomplete="off" spellcheck="false">
-  <div class="err" id="aiErr" role="alert"></div>
-  <div class="row"><button class="btn primary" id="aiSave" type="button">Guardar dirección</button><button class="btn" id="aiClear" type="button">Quitar</button><button class="btn" id="setClose" type="button">Cerrar</button></div>
-  <small>Solo se aceptan direcciones https:// sin usuario ni contraseña. Si el sitio no permite mostrarse dentro del centro, se ofrece abrirlo en una pestaña nueva.</small>
-  <p><b>Tus datos:</b> favoritas, recientes, tema y esta dirección se guardan en <em>este navegador y este dispositivo</em>. No se sincronizan con otros trabajadores ni equipos. No guardes contraseñas acá.</p>
-</div></dialog>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
 <script>
@@ -458,11 +514,10 @@ html[data-theme="dark"] .topbar{background:rgba(3,7,17,.6);backdrop-filter:blur(
    Ejemplo: const AI_URL = "https://mi-ia.com";
    Tiene que empezar con https:// para que funcione en GitHub Pages.
    ============================================================ */
-const AI_URL = (()=>{try{const v=localStorage.getItem('suri_ai_url');if(!v)return "";const u=new URL(JSON.parse(v));
-  return (u.protocol==='https:'&&!u.username&&!u.password)?u.href:"";}catch(e){return ""}})();
+/* ✏️ PEGÁ ACÁ LA URL DE SURI (IA principal), entre las comillas. Debe empezar con https://
+   Si queda vacía ("") SURI no aparece en el centro. */
+const AI_URL = "";
 
-/* Si tu IA no se muestra dentro del panel (muchos sitios lo bloquean),
-   poné false y se abrirá en una pestaña nueva con un botón. */
 const AI_EMBED = true;
 
 /* ---------- Herramientas ---------- */
@@ -511,7 +566,7 @@ function setTheme(mode){
   store.set('volksia_theme',mode);
 }
 function toggleTheme(){ setTheme(document.documentElement.dataset.theme==='dark'?'light':'dark'); }
-setTheme(store.get('volksia_theme','dark'));
+setTheme('dark');
 $('#themebtn').addEventListener('click',toggleTheme);
 
 /* ---------- Menú lateral ---------- */
@@ -519,7 +574,7 @@ function buildNav(){
   const nav=$('#railnav');
   nav.innerHTML =
     `<a class="rl" href="#inicio" data-id="inicio" title="Inicio">${ico('i-home')}<span class="lbl">Inicio</span></a><div class="railsep"></div>` +
-    TOOLS.map(t=>`<a class="rl" href="#${t.id}" data-id="${t.id}" style="--t:${t.color}" title="${t.name}">${ico(t.icon)}<span class="lbl">${t.name}</span>${t.kind==='web'&&t.id==='certificados'?'<span class="tagweb">Web</span>':''}</a>`).join('') + `<div class="railsep"></div><a class="rl" href="#configuracion" data-id="configuracion" title="Configuración">${ico('i-grid')}<span class="lbl">Configuración</span></a>`;
+    TOOLS.map(t=>`<a class="rl" href="#${t.id}" data-id="${t.id}" style="--t:${t.color}" title="${t.name}">${ico(t.icon)}<span class="lbl">${t.name}</span>${t.kind==='web'&&t.id==='certificados'?'<span class="tagweb">Web</span>':''}</a>`).join('');
 }
 function setMenu(open){app.classList.toggle('menuopen',open)}
 $('#menubtn').addEventListener('click',()=>setMenu(true));
@@ -665,7 +720,6 @@ function showHome(){
 }
 function route(){
   const id=decodeURIComponent(location.hash.slice(1));
-  if(id==='configuracion'){ if(!current && $('#home').hidden) showHome(); openSettings(); return; }
   const t=TOOLS.find(x=>x.id===id);
   if(t) showTool(t); else showHome();
 }
@@ -1240,24 +1294,6 @@ async function checkTool(t){
   finally{clearTimeout(to)}
 }
 function checkAll(){TOOLS.forEach(checkTool)}
-
-const setdlg=$('#setdlg');
-function openSettings(){ $('#aiUrl').value=AI_URL; $('#aiErr').textContent=''; if(!setdlg.open) setdlg.showModal(); }
-function closeSettings(){ if(setdlg.open) setdlg.close(); }
-setdlg.addEventListener('close',()=>{ if(location.hash==='#configuracion') history.replaceState(null,'', current?'#'+current.id:'#inicio'); });
-setdlg.addEventListener('click',e=>{if(e.target===setdlg) closeSettings()});
-$('#setClose').addEventListener('click',closeSettings);
-$('#aiSave').addEventListener('click',()=>{
-  const v=$('#aiUrl').value.trim(), err=$('#aiErr');
-  try{
-    const u=new URL(v);
-    if(u.protocol!=='https:') throw new Error('La dirección debe empezar con https://');
-    if(u.username||u.password) throw new Error('No incluyas usuario ni contraseña en la dirección.');
-    if(v.length>2048) throw new Error('La dirección es demasiado larga.');
-    store.set('suri_ai_url',u.href); location.reload();
-  }catch(e){ err.textContent = e instanceof TypeError ? 'Eso no parece una dirección válida.' : e.message; }
-});
-$('#aiClear').addEventListener('click',()=>{ try{localStorage.removeItem('suri_ai_url')}catch(e){} location.reload(); });
 
 /* ---------- Inicio ---------- */
 let booted=false;
